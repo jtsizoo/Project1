@@ -1,0 +1,22 @@
+Group 14
+01/28/2022
+Thresa Kelly, Alice Kuang, Minwoo Lee, Justin Sizoo, Maggie Swartz
+
+
+Team meetings:
+	1-2 each week (~1 hour each week)
+		3 weeks * 1 hour * 5 people = 15 hours
+		
+Coding:
+	Roughly 2-4 hours each week per person (Smaller scale projects in previous classes tend to have taken around 5-7 hours, which led us to this estimate)
+		3 hours * 2 weeks * 5 people = 30 hours 
+		
+Testing: 
+	~1 hour for each person after implementation is completed
+		1 hour * 5 people = 5 hours
+		
+Documenting:
+	~1 hour for each person to document throughout the project
+		1 hour * 5 people = 5 hours 
+
+Total Estimate: 15 hours (Team meetings) + 30 hours (Coding) + 5 hours (Testing) + 5 hours (Documenting) = 55 hours 
