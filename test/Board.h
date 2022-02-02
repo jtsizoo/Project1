@@ -12,7 +12,6 @@ class Board {
     Board(int size);
     ~Board();
     void insertShip(int size, int row, int col, char dir);
-
 };
 
 #endif

@@ -10,7 +10,7 @@ class Executive {
     int m_size;
     Board* p1Board;
     Board* p2Board;
-    int pTurn;
+    int PTurn;
 
     public:
     Executive(int numShips);

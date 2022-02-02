@@ -2,7 +2,7 @@
 
 Executive::Executive(int numShips) {
     m_size = 10;
-    pTurn = 0;
+    PTurn = 0;
     p1Board = new Board(m_size);
     p2Board = new Board(m_size);
     chooseShipLoc(p1Board, numShips);
