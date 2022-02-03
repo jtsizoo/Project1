@@ -11,7 +11,7 @@ class Board {
     public:
     Board(int size);
     ~Board();
-    void insertShip(int size, int row, int col, char dir);
+    bool insertShip(int size, int row, int col, char dir);
 };
 
 #endif

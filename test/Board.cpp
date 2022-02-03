@@ -23,32 +23,26 @@ Board::~Board() {
     delete[] shotGrid;
 }
 
-void Board::insertShip(int size, int row, int col, char dir) {
+bool Board::insertShip(int size, int row, int col, char dir) {
     int x = row;
     int y = col;
-    int move = 0;
-    bool vertical = false;
-    
-    if (dir == 'N' || dir == 'S') {
-        vertical = true;
-        if (dir == 'N') {
-            move = 1;
-        } else {
-            move = -1;
-        }
-    } else {
-        if (dir == 'E') {
-            move = 1;
-        } else {
-            move = -1;
-        }
+
+    if (dir == 'H') {
+      if ((x+1) + size > m_size || (y+1) + size > m_size) {
+        return false;
+      }
     }
     for (int i = 0; i < size; i++) {
-        placeGrid[x][y] = 'F';
-        if (vertical) {
-            y += move;
+        placeGrid[x][y] = 'O';
+        if (dir == 'V') {
+            y += 1;
         } else {
-            x += move;
+            x += 1;
         }
     }
+    return true;
+}
+
+bool checkValidLoc() {
+
 }
