@@ -12,7 +12,6 @@ Board::Board(int size) {
             shotGrid[i][j] = '0';
         }
     }
-    printPlaceGrid();
 }
 
 Board::~Board() {
@@ -27,7 +26,7 @@ Board::~Board() {
 bool Board::insertShip(int size, int row, int col, char dir) {
     int x = col;
     int y = row;
-    std::cout << x << " " << y << " ";
+
     if (dir == 'H') {
       if ((x+1) + size > m_size) {
         return false;
@@ -37,12 +36,13 @@ bool Board::insertShip(int size, int row, int col, char dir) {
         return false;
       }
     }
+
     for (int i = 0; i < size; i++) {
-        placeGrid[x][y] = 'O';
-        if (dir == 'V') {
-            y += 1;
-        } else {
+        placeGrid[y][x] = 'X';
+        if (dir == 'H') {
             x += 1;
+        } else {
+            y += 1;
         }
     }
     return true;

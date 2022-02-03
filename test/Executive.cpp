@@ -3,11 +3,14 @@
 
 Executive::Executive(int numShips) {
     m_size = 10;
-    PTurn = 0;
+    PTurn = false;
     p1Board = new Board(m_size);
     p2Board = new Board(m_size);
     chooseShipLoc(p1Board, numShips);
-    chooseShipLoc(p1Board, numShips);
+    chooseShipLoc(p2Board, numShips);
+    p1Board->printPlaceGrid();
+    std::cout << '\n';
+    p2Board->printPlaceGrid();
 }
 
 Executive::~Executive() {
@@ -28,14 +31,14 @@ void Executive::chooseShipLoc(Board* board, int numShips) {
     bool inserted = false;
     for (int i = 0; i < numShips; i++) {
         while (!inserted) {
-          std::cout << "Input a location for ship " << i+1 << ": ";
+          std::cout << "Player " << PTurn+1 << ", Input a location for ship " << i+1 << ": ";
           shipLoc = validateLoc(shipLoc);
-          row = shipLoc[0];
+          row = (int)shipLoc[0] - 48;
           column = shipLoc[1];
           col = charToInt(column);
           std::cout << "Input a direction (Horizontal or vertical): ";
           direction = validateDirection(direction);
-          if (!board->insertShip(i, row-1, col, direction)) {
+          if (!board->insertShip(i+1, row-1, col, direction)) {
             std::cout << "Error: Ship extends outside board. Try again\n";
           } else {
             inserted = true;
@@ -43,6 +46,7 @@ void Executive::chooseShipLoc(Board* board, int numShips) {
         }
         inserted = false;
     }
+    PTurn = !PTurn;
 }
 
 int Executive::charToInt(char c) {
