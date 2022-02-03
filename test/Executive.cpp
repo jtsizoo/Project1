@@ -1,4 +1,5 @@
 #include "Executive.h"
+#include <limits>
 
 Executive::Executive(int numShips) {
     m_size = 10;
@@ -53,7 +54,7 @@ int Executive::charToInt(char c) {
 
 std::string Executive::validateLoc(std::string input) {
     std::cin >> input;
-	while (std::cin.fail() && input.length() !=     int move = 0;2 && !isdigit(input[0]) && isdigit(input[1])) {
+	while (std::cin.fail() && input.length() != 2 && !isdigit(input[0]) && isdigit(input[1])) {
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "Sorry, your input was invalid. Try again: ";

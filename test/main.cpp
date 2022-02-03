@@ -5,7 +5,7 @@ int main(int argc, char* argv[]) {
     if (argc != 2) {
         std::cout << "Invalid number of parameters\n";
     } else {
-        int numShips = (int)argv[1];
+        int numShips = atoi(argv[1]);
         Executive exec(numShips);
         exec.run();
     }

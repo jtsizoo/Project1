@@ -8,10 +8,11 @@ Board::Board(int size) {
         placeGrid[i] = new char[m_size];
         shotGrid[i] = new char[m_size];
         for (int j = 0; j < m_size; j++) {
-            placeGrid[i][j] = '\0';
-            shotGrid[i][j] = '\0';
+            placeGrid[i][j] = '0';
+            shotGrid[i][j] = '0';
         }
     }
+    printPlaceGrid();
 }
 
 Board::~Board() {
@@ -24,11 +25,15 @@ Board::~Board() {
 }
 
 bool Board::insertShip(int size, int row, int col, char dir) {
-    int x = row;
-    int y = col;
-
+    int x = col;
+    int y = row;
+    std::cout << x << " " << y << " ";
     if (dir == 'H') {
-      if ((x+1) + size > m_size || (y+1) + size > m_size) {
+      if ((x+1) + size > m_size) {
+        return false;
+      }
+    } else {
+      if ((y+1) + size > m_size) {
         return false;
       }
     }
@@ -43,6 +48,11 @@ bool Board::insertShip(int size, int row, int col, char dir) {
     return true;
 }
 
-bool checkValidLoc() {
-
+void Board::printPlaceGrid() {
+  for (int i = 0; i < m_size; i++) {
+    for (int j = 0; j < m_size; j++) {
+      std::cout << placeGrid[i][j] << " ";
+    }
+    std::cout << '\n';
+  }
 }
