@@ -1,3 +1,4 @@
+
 #include "Board.h"
 
 Board::Board(int size) {
@@ -28,11 +29,11 @@ bool Board::insertShip(int size, int row, int col, char dir) {
     int y = row;
 
     if (dir == 'h') {
-      if ((x+1) + size > m_size) {
+      if (x + size > m_size || x < 0) {
         return false;
       }
     } else {
-      if ((y+1) + size > m_size) {
+      if (y + size > m_size || y < 0) {
         return false;
       }
     }
@@ -48,38 +49,50 @@ bool Board::insertShip(int size, int row, int col, char dir) {
     return true;
 }
 
-void Board::printPlaceGrid() {
-	std::cout << "\n";
-	for (int i = 0; i <= m_size; i++) 
-	{
-		if(i==1) std::cout << "\n";
-		if(i != 0) std::cout << printCol[i-1] << " ";
-		for (int j = 0; j <= m_size; j++) 
-		{
-			if(i==0 && j==0 && i!= m_size) std::cout << "  ";
-			if(j == 0 && i != m_size) std::cout << " ";
-			if(i==0 && j != 0) std::cout << printRow[j-1] << " ";
-			else if (i != 0 && j != m_size) std::cout << placeGrid[i-1][j] << " ";
-		}
-    std::cout << '\n';
-	}
-  	std::cout << "\n";
+bool Board::shootShot(int row, int col, Board* opBoard) {
+  if (opBoard->isHit(row, col)) {
+    shotGrid[row][col] = 'H';
+    return true;
+  } else {
+    shotGrid[row][col] = 'M';
+    return false;
+  }
 }
 
-void Board::printInitialBoard() {
-	std::cout << "\n";
-	for(int i=0; i<=m_size; i++)
-	{
-		if(i==1) std::cout << "\n";
-		if(i != 0) std::cout << printCol[i-1] << " ";
-		for(int j=0; j<=m_size; j++)
-		{
-			if(i==0 && j==0 && i!= m_size) std::cout << "  ";
-			if(j == 0 && i != m_size) std::cout << " ";
-			if(i==0 && j != 0) std::cout << printRow[j-1] << " ";
-			else if(i != 0 && j!= m_size) std::cout << "0 ";
-		}
-		std::cout << "\n";
-	}
-	std::cout << "\n";
+bool Board::isHit(int row, int col) {
+  if (placeGrid[row][col] == 'X') {
+    placeGrid[row][col] = 'S';
+    return true;
+  } else {
+    return false;
+  }
+}
+
+bool Board::checkWin() {
+  for (int i = 0; i < m_size; i++) {
+    for (int j = 0; j < m_size; j++) {
+      if (placeGrid[i][j] == 'X') {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+void Board::printShotGrid() {
+  for (int i = 0; i < m_size; i++) {
+    for (int j = 0; j < m_size; j++) {
+      std::cout << shotGrid[i][j] << " ";
+    }
+    std::cout << '\n';
+  }
+}
+
+void Board::printPlaceGrid() {
+  for (int i = 0; i < m_size; i++) {
+    for (int j = 0; j < m_size; j++) {
+      std::cout << placeGrid[i][j] << " ";
+    }
+    std::cout << '\n';
+  }
 }
