@@ -8,6 +8,8 @@ class Board {
     int m_size;
     char** placeGrid;
     char** shotGrid;
+	int printCol[10] = {1,2,3,4,5,6,7,8,9,10};
+	char printRow[10] = {'A','B','C','D','E','F','G','H','I','J'};
 
     public:
     Board(int size);
@@ -18,6 +20,7 @@ class Board {
     bool checkWin();
     void printShotGrid();
     void printPlaceGrid();
+	void printInitialBoard();
 };
 
 #endif
