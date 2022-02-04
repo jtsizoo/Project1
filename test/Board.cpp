@@ -49,10 +49,37 @@ bool Board::insertShip(int size, int row, int col, char dir) {
 }
 
 void Board::printPlaceGrid() {
-  for (int i = 0; i < m_size; i++) {
-    for (int j = 0; j < m_size; j++) {
-      std::cout << placeGrid[i][j] << " ";
-    }
+	std::cout << "\n";
+	for (int i = 0; i <= m_size; i++) 
+	{
+		if(i==1) std::cout << "\n";
+		if(i != 0) std::cout << printCol[i-1] << " ";
+		for (int j = 0; j <= m_size; j++) 
+		{
+			if(i==0 && j==0 && i!= m_size) std::cout << "  ";
+			if(j == 0 && i != m_size) std::cout << " ";
+			if(i==0 && j != 0) std::cout << printRow[j-1] << " ";
+			else if (i != 0 && j != m_size) std::cout << placeGrid[i-1][j] << " ";
+		}
     std::cout << '\n';
-  }
+	}
+  	std::cout << "\n";
+}
+
+void Board::printInitialBoard() {
+	std::cout << "\n";
+	for(int i=0; i<=m_size; i++)
+	{
+		if(i==1) std::cout << "\n";
+		if(i != 0) std::cout << printCol[i-1] << " ";
+		for(int j=0; j<=m_size; j++)
+		{
+			if(i==0 && j==0 && i!= m_size) std::cout << "  ";
+			if(j == 0 && i != m_size) std::cout << " ";
+			if(i==0 && j != 0) std::cout << printRow[j-1] << " ";
+			else if(i != 0 && j!= m_size) std::cout << "0 ";
+		}
+		std::cout << "\n";
+	}
+	std::cout << "\n";
 }

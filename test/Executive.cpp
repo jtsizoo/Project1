@@ -6,11 +6,9 @@ Executive::Executive(int numShips) {
     PTurn = false;
     p1Board = new Board(m_size);
     p2Board = new Board(m_size);
+	p1Board->printInitialBoard();
     chooseShipLoc(p1Board, numShips);
     chooseShipLoc(p2Board, numShips);
-    p1Board->printPlaceGrid();
-    std::cout << '\n';
-    p2Board->printPlaceGrid();
 }
 
 Executive::~Executive() {
@@ -42,6 +40,8 @@ void Executive::chooseShipLoc(Board* board, int numShips) {
             std::cout << "Error: Ship extends outside board. Try again\n";
           } else {
             inserted = true;
+			board->printPlaceGrid();
+			std::cout << "\n";
           }
         }
         inserted = false;
@@ -58,7 +58,27 @@ int Executive::charToInt(char c) {
 
 std::string Executive::validateLoc(std::string input) {
     std::cin >> input;
-	while (std::cin.fail() || input.length() != 2 || !isdigit(input[0]) || isdigit(input[1])) {
+	int num10;
+	if(input.length() == 3)
+	{
+		if(input[0] == '1' && input[1] == '0')
+		{
+			num10 = 10;
+		}
+	}
+	bool lengthCheck1 = 0;
+	bool lengthCheck2 = 0;
+	bool lengthCheck3 = 0;
+	if(input.length() < 2 || input.length() > 3) lengthCheck3 = 1;
+	if(input.length() == 2)
+	{
+		if(!isdigit(input[0]) || isdigit(input[1])) lengthCheck1 = 1;
+	}
+	else if(input.length() == 3)
+	{
+		if(num10 != 10 || !isdigit(input[0]) || !isdigit(input[1]) || isdigit(input[2])) lengthCheck2 = 1;
+	}	 
+while (std::cin.fail() ||lengthCheck3 || lengthCheck1 || lengthCheck2) {
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "Sorry, your input was invalid. Try again: ";
