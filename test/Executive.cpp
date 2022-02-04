@@ -58,7 +58,7 @@ int Executive::charToInt(char c) {
 
 std::string Executive::validateLoc(std::string input) {
     std::cin >> input;
-	while (std::cin.fail() && input.length() != 2 && !isdigit(input[0]) && isdigit(input[1])) {
+	while (std::cin.fail() || input.length() != 2 || !isdigit(input[0]) || isdigit(input[1])) {
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "Sorry, your input was invalid. Try again: ";
@@ -70,7 +70,8 @@ std::string Executive::validateLoc(std::string input) {
 
 char Executive::validateDirection(char input) {
     std::cin >> input;
-	while (std::cin.fail() && input != 'H' && input != 'V') {
+    input = tolower(input);
+	while (std::cin.fail() || (input != 'h' && input != 'v')) {
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "Sorry, your input was invalid. Try again: ";

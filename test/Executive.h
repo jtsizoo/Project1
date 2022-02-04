@@ -17,7 +17,6 @@ class Executive {
     ~Executive();
     void chooseShipLoc(Board* board, int numShips);
     void run();
-    void printBoard();
     int charToInt(char c);
     std::string validateLoc(std::string input);
     char validateDirection(char input);

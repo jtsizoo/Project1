@@ -27,7 +27,7 @@ bool Board::insertShip(int size, int row, int col, char dir) {
     int x = col;
     int y = row;
 
-    if (dir == 'H') {
+    if (dir == 'h') {
       if ((x+1) + size > m_size) {
         return false;
       }
@@ -39,7 +39,7 @@ bool Board::insertShip(int size, int row, int col, char dir) {
 
     for (int i = 0; i < size; i++) {
         placeGrid[y][x] = 'X';
-        if (dir == 'H') {
+        if (dir == 'h') {
             x += 1;
         } else {
             y += 1;
