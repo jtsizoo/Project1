@@ -61,10 +61,18 @@ void Executive::chooseShipLoc(Board* board, int numShips) {
         while (!inserted) {
           std::cout << "Player " << PTurn+1 << ", Input a location for ship " << i+1 << ": ";
           shipLoc = validateLoc(shipLoc);
-
-          row = (int)shipLoc[0] - 49;
-          column = tolower(shipLoc[1]);
-          col = charToInt(column);
+		  if(shipLoc.length() ==3)
+		  {
+			  row = 9; //If row = 10
+			  column = tolower(shipLoc[2]);
+			  col = charToInt(column);
+		  }
+		  else
+		  {
+			  row = (int)shipLoc[0] - 49;
+			  column = tolower(shipLoc[1]);
+			  col = charToInt(column);
+		  }
 		  if(i == 0) direction = 'H'; //If i=0, the first ship is being entered and a direction is not necessary.
 		  else
 		  {
@@ -96,10 +104,10 @@ std::string Executive::validateLoc(std::string input) {
 	bool lengthCheck2 = 0;
 	bool lengthCheck3 = 0;
 	bool validChar = 0;
-	if(input.length() < 2 || input.length() > 3) restrictLength = 1;
+	if(input.length() < 2 || input.length() > 3) restrictLength = 1; //Restrict the length to strings of 2 or 3
 	if(input.length() == 2)
 	{
-		if(!isdigit(input[0]) || isdigit(input[1])) lengthCheck2 = 1;
+		if(!isdigit(input[0]) || isdigit(input[1])) lengthCheck2 = 1; 
 		if(charToInt(input[1]) >= 0 && charToInt(input[1]) < 10) validChar = 1; //validate lower char case
 		else if(charToInt(input[1]) > -33 && charToInt(input[1]) < -22) validChar = 1; //validate capital char case
 	}
