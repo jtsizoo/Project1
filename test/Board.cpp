@@ -28,11 +28,11 @@ bool Board::insertShip(int size, int row, int col, char dir) {
     int y = row;
 
     if (dir == 'h') {
-      if ((x+1) + size > m_size || x < 0) {
+      if (x + size > m_size || x < 0) {
         return false;
       }
     } else {
-      if ((y+1) + size > m_size || y < 0) {
+      if (y + size > m_size || y < 0) {
         return false;
       }
     }
