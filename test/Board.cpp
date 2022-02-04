@@ -40,14 +40,19 @@ bool Board::insertShip(int size, int row, int col, char dir) {
     }
 
     for (int i = 0; i < size; i++) {
-        placeGrid[y][x] = 'X';
-		std::cout << placeGrid[y][x] << "\n";
-		std::cout << "Row: " << y << ", Col: " << x;
-        if (dir == 'h') {
-            x += 1;
-        } else {
-            y += 1;
-        }
+		if(placeGrid[y][x] == 'X')
+		{
+			return false;
+		}
+		else
+		{
+			placeGrid[y][x] = 'X';
+			if (dir == 'h') {
+				x += 1;
+			} else {
+				y += 1;
+			}
+		}
     }
     return true;
 }

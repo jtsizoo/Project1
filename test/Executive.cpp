@@ -80,14 +80,14 @@ void Executive::chooseShipLoc(Board* board, int numShips) {
 			  direction = validateDirection(direction);
 		  }
           if (!board->insertShip(i+1, row, col, direction)) {
-            std::cout << "Error: Ship extends outside board. Try again\n";
+            std::cout << "Error - Invalid Location : Ship already exists here or extends outside board. Try again\n";
           } else {
             inserted = true;
+			board->printPlaceGrid();
           }
         }
         inserted = false;
     }
-	board->printPlaceGrid();
     PTurn = !PTurn;
 }
 
