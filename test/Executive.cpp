@@ -19,7 +19,36 @@ Executive::~Executive() {
 }
 
 void Executive::run() {
+    Board* board = p1Board;
+    Board* opBoard = p2Board;
+    while (true) {
+        std::string shot = "";
+        int row = 0;
+        int col = 0;
+        char column;
 
+        std::cout << "Player " << PTurn+1 << ", take your shot: ";
+        shot = validateLoc(shot);
+        row = (int)shot[0] - 47;
+        column = tolower(shot[1]);
+        col = charToInt(column);
+
+        if (board->shootShot(row, col, opBoard)) {
+            std::cout << "HIT:\n\n";
+            board->printShotGrid();
+            if (opBoard->checkWin()) {
+                break;
+            }
+        } else {
+            std::cout << "MISS:\n\n";
+            board->printShotGrid();
+            Board* temp = board;
+            board = opBoard;
+            opBoard = temp;
+            PTurn = !PTurn;
+        }
+    }
+    std::cout << "\nGame end: Player " << PTurn+1 << " wins.\n";
 }
 
 void Executive::chooseShipLoc(Board* board, int numShips) {
@@ -29,16 +58,19 @@ void Executive::chooseShipLoc(Board* board, int numShips) {
     char column;
     char direction;
     bool inserted = false;
+
     for (int i = 0; i < numShips; i++) {
         while (!inserted) {
           std::cout << "Player " << PTurn+1 << ", Input a location for ship " << i+1 << ": ";
           shipLoc = validateLoc(shipLoc);
-          row = (int)shipLoc[0] - 48;
-          column = shipLoc[1];
+
+          row = (int)shipLoc[0] - 47;
+          column = tolower(shipLoc[1]);
           col = charToInt(column);
+
           std::cout << "Input a direction (Horizontal or vertical): ";
           direction = validateDirection(direction);
-          if (!board->insertShip(i+1, row-1, col, direction)) {
+          if (!board->insertShip(i+1, row, col, direction)) {
             std::cout << "Error: Ship extends outside board. Try again\n";
           } else {
             inserted = true;
@@ -51,8 +83,8 @@ void Executive::chooseShipLoc(Board* board, int numShips) {
 
 int Executive::charToInt(char c) {
     int colNum = (int)c;
-    //ASCII (A-J) -> (65-75)
-    colNum -= 65;
+    //ASCII (a-j) -> (97-107)
+    colNum -= 97;
     return colNum;
 }
 

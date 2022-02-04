@@ -28,11 +28,11 @@ bool Board::insertShip(int size, int row, int col, char dir) {
     int y = row;
 
     if (dir == 'h') {
-      if ((x+1) + size > m_size) {
+      if ((x+1) + size > m_size || x < 0) {
         return false;
       }
     } else {
-      if ((y+1) + size > m_size) {
+      if ((y+1) + size > m_size || y < 0) {
         return false;
       }
     }
@@ -46,6 +46,45 @@ bool Board::insertShip(int size, int row, int col, char dir) {
         }
     }
     return true;
+}
+
+bool Board::shootShot(int row, int col, Board* opBoard) {
+  if (opBoard->isHit(row, col)) {
+    shotGrid[row][col] = 'H';
+    return true;
+  } else {
+    shotGrid[row][col] = 'M';
+    return false;
+  }
+}
+
+bool Board::isHit(int row, int col) {
+  if (placeGrid[row][col] == 'X') {
+    placeGrid[row][col] = 'S';
+    return true;
+  } else {
+    return false;
+  }
+}
+
+bool Board::checkWin() {
+  for (int i = 0; i < m_size; i++) {
+    for (int j = 0; j < m_size; j++) {
+      if (placeGrid[i][j] == 'X') {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+void Board::printShotGrid() {
+  for (int i = 0; i < m_size; i++) {
+    for (int j = 0; j < m_size; j++) {
+      std::cout << shotGrid[i][j] << " ";
+    }
+    std::cout << '\n';
+  }
 }
 
 void Board::printPlaceGrid() {
