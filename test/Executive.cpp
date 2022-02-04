@@ -27,9 +27,18 @@ void Executive::run() {
 
         std::cout << "Player " << PTurn+1 << ", take your shot: ";
         shot = validateLoc(shot);
-        row = (int)shot[0] - 49;
-        column = tolower(shot[1]);
-        col = charToInt(column);
+		 if(shot.length() ==3)
+		  {
+			  row = 9; //If row = 10
+			  column = tolower(shot[2]);
+			  col = charToInt(column);
+		  }
+		  else
+		  {
+				row = (int)shot[0] - 49;
+				column = tolower(shot[1]);
+				col = charToInt(column);
+		  }
 
         if (board->shootShot(row, col, opBoard)) {
             std::cout << "HIT:\n\n";
