@@ -62,7 +62,7 @@ void Executive::chooseShipLoc(Board* board, int numShips) {
           std::cout << "Player " << PTurn+1 << ", Input a location for ship " << i+1 << ": ";
           shipLoc = validateLoc(shipLoc);
 
-          row = (int)shipLoc[0] - 47;
+          row = (int)shipLoc[0] - 49;
           column = tolower(shipLoc[1]);
           col = charToInt(column);
 
