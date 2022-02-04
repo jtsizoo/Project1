@@ -5,6 +5,7 @@
 
 class Board {
     private:
+	std::string player;
     int m_size;
     char** placeGrid;
     char** shotGrid;
@@ -12,7 +13,7 @@ class Board {
 	char printRow[10] = {'A','B','C','D','E','F','G','H','I','J'};
 
     public:
-    Board(int size);
+    Board(int size, std::string playerNum);
     ~Board();
     bool insertShip(int size, int row, int col, char dir);
     bool shootShot(int row, int col, Board* opBoard);

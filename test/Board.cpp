@@ -1,7 +1,8 @@
 
 #include "Board.h"
 
-Board::Board(int size) {
+Board::Board(int size, std::string playerNum) {
+	player = playerNum;
     m_size = size;
     placeGrid = new char*[m_size];
     shotGrid = new char*[m_size];
@@ -80,7 +81,7 @@ bool Board::checkWin() {
 }
 
 void Board::printShotGrid() {
-	std::cout << "\n";
+	std::cout << "\n" << this->player <<"'s " << "Shot Grid\n\n";
 	for(int i=0; i<=m_size; i++)
 	{
 		if(i==1) std::cout << "\n";
@@ -98,7 +99,7 @@ void Board::printShotGrid() {
 }
 
 void Board::printPlaceGrid() {
-	std::cout << "\n";
+	std::cout << "\n" << this->player <<"'s " << "Place Grid\n\n";
 	for(int i=0; i<=m_size; i++)
 	{
 		if(i==1) std::cout << "\n";

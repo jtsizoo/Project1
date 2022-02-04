@@ -4,8 +4,8 @@
 Executive::Executive(int numShips) {
     m_size = 10;
     PTurn = false;
-    p1Board = new Board(m_size);
-    p2Board = new Board(m_size);
+    p1Board = new Board(m_size, "Player 1");
+    p2Board = new Board(m_size, "Player 2");
 	p1Board->printInitialBoard();
     chooseShipLoc(p1Board, numShips);
     chooseShipLoc(p2Board, numShips);
@@ -27,7 +27,7 @@ void Executive::run() {
 
         std::cout << "Player " << PTurn+1 << ", take your shot: ";
         shot = validateLoc(shot);
-        row = (int)shot[0] - 47;
+        row = (int)shot[0] - 49;
         column = tolower(shot[1]);
         col = charToInt(column);
 
