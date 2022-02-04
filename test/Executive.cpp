@@ -65,9 +65,12 @@ void Executive::chooseShipLoc(Board* board, int numShips) {
           row = (int)shipLoc[0] - 49;
           column = tolower(shipLoc[1]);
           col = charToInt(column);
-
-          std::cout << "Input a direction (Horizontal or vertical): ";
-          direction = validateDirection(direction);
+		  if(i == 0) direction = 'H'; //If i=0, the first ship is being entered and a direction is not necessary.
+		  else
+		  {
+			  std::cout << "Input a direction (Horizontal or vertical): ";
+			  direction = validateDirection(direction);
+		  }
           if (!board->insertShip(i+1, row, col, direction)) {
             std::cout << "Error: Ship extends outside board. Try again\n";
           } else {
@@ -89,27 +92,24 @@ int Executive::charToInt(char c) {
 
 std::string Executive::validateLoc(std::string input) {
     std::cin >> input;
-	int num10;
-	if(input.length() == 3)
-	{
-		if(input[0] == '1' && input[1] == '0')
-		{
-			num10 = 10;
-		}
-	}
-	bool lengthCheck1 = 0;
+	bool restrictLength = 0;
 	bool lengthCheck2 = 0;
 	bool lengthCheck3 = 0;
-	if(input.length() < 2 || input.length() > 3) lengthCheck3 = 1;
+	bool validChar = 0;
+	if(input.length() < 2 || input.length() > 3) restrictLength = 1;
 	if(input.length() == 2)
 	{
-		if(!isdigit(input[0]) || isdigit(input[1])) lengthCheck1 = 1;
+		if(!isdigit(input[0]) || isdigit(input[1])) lengthCheck2 = 1;
+		if(charToInt(input[1]) >= 0 && charToInt(input[1]) < 10) validChar = 1; //validate lower char case
+		else if(charToInt(input[1]) > -33 && charToInt(input[1]) < -22) validChar = 1; //validate capital char case
 	}
 	else if(input.length() == 3)
 	{
-		if(num10 != 10 || !isdigit(input[0]) || !isdigit(input[1]) || isdigit(input[2])) lengthCheck2 = 1;
+		if(!isdigit(input[0]) || !isdigit(input[1]) || isdigit(input[2]) || (input[0] != '1' && input[1] != '0')) lengthCheck3 = 1;
+		if(charToInt(input[2]) >= 0 && charToInt(input[2]) < 10) validChar = 1; //validate lower char case
+		else if(charToInt(input[2]) > -33 && charToInt(input[2]) < -22) validChar = 1; //validate capital char case
 	}	 
-	while (std::cin.fail() ||lengthCheck3 || lengthCheck1 || lengthCheck2) {
+	while (std::cin.fail() || restrictLength || lengthCheck3 || lengthCheck2 || !validChar) {
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "Sorry, your input was invalid. Try again: ";
