@@ -15,7 +15,8 @@ class Board {
 	private:
 	std::string player; //std::string representing player name
 	int m_size; //member variable m_size, representing size of board
-	char** placeGrid; //2D array of characters, representing placeGrid (where a player places their own battleships)
+    char** initialGrid; //2D array of characters, representing initialGrid (the resulting grid after player places their own battleships)
+    char** placeGrid; //2D array of characters, representing placeGrid (where a player places their own battleships)
 	char** shotGrid; //2D array of characters, representing shotGrid (where a player tries to hit opponent's battleships and records results)
 	int printCol[10] = {1,2,3,4,5,6,7,8,9,10}; //Array of integers, of size 10, filled w/ headers for column positions. 
 	char printRow[10] = {'A','B','C','D','E','F','G','H','I','J'}; //Array of characters, of size 10, filled w/ headers for row positions.
@@ -48,6 +49,15 @@ class Board {
         * @param row/col represent x/y location where shot is taking place, Board* pointer references oppoent's board
         * @return boolean value T or F, representing whether or not a shot occurred at the given location
         * -------*/
+
+    bool sinkStatus(int row, int col);
+    /*----------
+    * @pre shootShot function returned true since a ship was hit
+    * @post returns T/F value for whether a given length ship was entirely sunk
+    * @param row/col represents x/y location of the ship
+    * @return boolean value T or F, respresenting whether a ship was sunk
+    * -------*/
+
 	bool shootShot(int row, int col, Board* opBoard);
 	/*----------
         * @pre shootShot function must have already ran
@@ -69,21 +79,7 @@ class Board {
         * @param none
         * @return none - void function
         * -------*/
-	void printShotGrid();
-	/*----------
-        * @pre none
-        * @post prints the placeGrid for either player
-        * @param none
-        * @return none - void function
-        * -------*/
-	void printPlaceGrid();
-	/*----------
-        * @pre none
-        * @post prints initial board representation for player to look at while deciding where to place their battleships
-        * @param none 
-        * @return none - void function
-        * -------*/
-	void printInitialBoard();
+    void printBoard(std::string boardType);
 };
 
 #endif
