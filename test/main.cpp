@@ -8,16 +8,20 @@
 
 #include "Executive.h"
 
-int main(int argc, char* argv[]) {
-    //run game: ./prog {# of ships}
-    if (argc != 2) std::cout << "Invalid number of parameters\n";
-	else if(atoi(argv[1]) < 1 || atoi(argv[1]) > 5) std::cout << "Invalid number of ships!\n";
-	else
-	{
-        int numShips = atoi(argv[1]);
-        Executive exec(numShips);
-        exec.run();
-    }
-
-    return 0;
+int main(int argc, char* argv[]) { //To run the program, user must enter ./test and the number of ships they'd like to play with.
+	if (argc != 2) { //If the user does not enter 2 arguments into the command line, the below error message will display.
+		std::cout << "Invalid number of parameters! To run the program, enter ./test followed by the number of desired ships (1, 2, 3, 4, or 5).\n";
+	} else { //When the user has etered ./test and a second argument into the command line, they enter the below if/else loop.
+		if (atoi(argv[1]) < 1 || atoi(argv[1]) > 5) { //If the 2nd argument converted to an integer is not between 1 and 5 inclusive, display error message.
+                        std::cout << "Invalid number of ships! Must be 1, 2, 3, 4, or 5.\n";
+		} else { //If the 2nd argument converted to an integer is between 1 and 5 inclusive...
+			int numShips = atoi(argv[1]); //Sets the variable integer numShips equal to the 2nd argument converted to an integer.
+			std::cout << "\nNumber of ships selected: " << numShips << "\n"; //Displays number of ships the user has selected.
+			Executive exec(numShips); //Creates an instance of the Executive class called exec, with numShips passed in as the argument.
+			exec.run(); //Triggers run function within created instance of the Executive class.
+		}
+	}
+	return (0);
 }
+
+//Is it possible/should we try to make it so the user cannot enter a double and have that convert to an integer?
