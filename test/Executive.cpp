@@ -11,14 +11,14 @@
 #include<iostream>
 #include <cctype>
 
-Executive::Executive(int numShips, int opShips) {
+Executive::Executive(int numShips) {
     m_size = 10;
     PTurn = false;
     p1Board = new Board(m_size, "Player 1");
     p2Board = new Board(m_size, "Player 2");
 	p1Board->printBoard("Initial");
     chooseShipLoc(p1Board, numShips);
-    chooseShipLoc(p2Board, opShips);
+    chooseShipLoc(p2Board, numShips);
 }
 
 Executive::~Executive() {
