@@ -51,7 +51,7 @@ bool Board::insertShip(int size, int row, int col, char dir) { //insertShip take
 		}
 	}
 	for (int i = 0; i < size; i++) { //For loop traverses size of current ship looking to be placed.
-			if (placeGrid[y][x]>= '1' && placeGrid[y][x] >= '5') { //If within the placeGride board an [i][j] location already contains an ship
+			if (placeGrid[y][x]>= '1' && placeGrid[y][x] >= '5') { //If within the placeGrid board an [i][j] location already contains an ship
 			return false; //Return false, because a ship is already present and anothre cannot be placed.
 		} else {
 		
@@ -69,7 +69,7 @@ bool Board::insertShip(int size, int row, int col, char dir) { //insertShip take
 	return true; //Return true here because the ship was successfully inserted at the desired location.
 }
 
-bool Board::shootShot(int row, int col, Board* opBoard) { //shootShot takes in row/col/pointer to oppoent's board and returns boolean indicating presence of hit or not.
+bool Board::shootShot(int row, int col, Board* opBoard) { //shootShot takes in row/col/pointer to opponent's board, returns boolean indicating hit or miss.
 	if (opBoard->isHit(row, col)) { //If there was a hit on the opponent's board at the designed row and col location...
 		shotGrid[row][col] = 'H'; //Then insert an H in the own player's corresponding shot grid to represent a hit...
 		return true; //And return true because the player successfully hit an opponent's battleship.
@@ -89,27 +89,26 @@ bool Board::isHit(int row, int col) { //isHit takes in row/col location and retu
 }
 
 
-bool Board::sinkStatus(int row, int col) { //sinkStatus evaluates if a sink is sunk by using the row and column location of a boat
-	int count = 0; //initialize a counter
-	char element = initialGrid[row][col]; //get the element stored at the position
+bool Board::sinkStatus(int row, int col) { //sinkStatus evaluates if a ship is sunk after a hit at a particular row and column location.
+	int count = 0; //Initializes integer variable to be used as a counter.
+	char element = initialGrid[row][col]; //Get the element stored at the position.
 	for (int i = 0; i < m_size; i++) {
 		for (int j = 0; j < m_size; j++) {
-			if (initialGrid[i][j] == element && placeGrid[i][j] == 'S') { //if the initial grid contains the given element and the player sunk the ship
-				count++; //increase the count
-				
-				if (count == (element-'0')) { //when the count and the element are the same, the ship has been sunk
-					return true; //return a true flag to exit the function
+			if (initialGrid[i][j] == element && placeGrid[i][j] == 'S') { //If initial grid contains the given element and the player sunk the ship.
+				count++; //Increases the count.
+				if (count == (element-'0')) { //When the count and the element are the same, the ship has been sunk.
+					return true; //Return true to exit the function.
 				}
 			}
 		}
 	}
-	return false; //the ship was not sunk, return a false flag
+	return false; //The ship was not sunk, return false.
 }
 
 bool Board::checkWin() { //checkWin takes in no parameters and returns boolean value indicating whether a player has won battleship or not.
-	for (int i = 0; i < m_size; i++) { //Nested for loop traverses entirety of placeGrid board
+	for (int i = 0; i < m_size; i++) { //Nested for loop traverses entirety of placeGrid board.
 		for (int j = 0; j < m_size; j++) {
-			if (placeGrid[i][j] >= '1' && placeGrid[i][j] <= '5') { //If throughout the board an X is encountered (representing an un-hit ship location)...
+			if (placeGrid[i][j] >= '1' && placeGrid[i][j] <= '5') { //If an X is encountered (representing an un-hit ship location)...
 				return false; //Then return false as ships remain and player has not yet won.
 			}
 		}
@@ -117,28 +116,27 @@ bool Board::checkWin() { //checkWin takes in no parameters and returns boolean v
 	return true; //Else, return true as no ships remain to be hit, player has won battleship.
 }
 
-
-//prints board based on given boardtype; purely for printing side-effects
-void Board::printBoard(string boardType) {
+void Board::printBoard(std::string boardType) { //Prints board based on given boardtype, just for UI interface.
 	std::cout << "\n" << this->player << "'s " << boardType <<" Grid\n\n"; //Heading designating which player's shot grid is in view.
-
-	for (int i = 0; i <= m_size; i++) //Nested for loop traverse entirety of board.
-	{
-		//formating for top row to display column letters
-		if (i == 1) std::cout << "\n";	
-		if (i != 0) std::cout << printCol[i - 1] << " ";
-
-		for (int j = 0; j <= m_size; j++)
-		{
-			//formating for displaying row numbers 
-			if (i == 0 && j == 0 && i != m_size) std::cout << "  ";
-			if (j == 0 && i != m_size) std::cout << " ";
-			if (i == 0 && j != 0) std::cout << printRow[j - 1] << " ";
-			//display grid
-			if(i != 0 && j != m_size) {
-				if(boardType == "Shot") std::cout << shotGrid[i - 1][j] << " ";
-				else std::cout << placeGrid[i - 1][j] << " ";
-				
+	for (int i = 0; i <= m_size; i++) { //Nested for loop traverse entirety of board.
+		if (i == 1) {
+			std::cout << "\n"; //Formatting for top row to display column letters.
+		} if (i != 0) {
+			std::cout << printCol[i - 1] << " ";
+		}
+		for (int j = 0; j <= m_size; j++) { //Formatting for displaying row numbers.
+			if (i == 0 && j == 0 && i != m_size) {
+				std::cout << "  ";
+			} if (j == 0 && i != m_size) {
+				std::cout << " ";
+			} if (i == 0 && j != 0) {
+				std::cout << printRow[j - 1] << " ";
+			} if (i != 0 && j != m_size) { //Display grid.
+				if (boardType == "Shot") {
+					std::cout << shotGrid[i - 1][j] << " ";
+				} else {
+					std::cout << placeGrid[i - 1][j] << " ";
+				}
 			}
 		}
 		std::cout << "\n";
