@@ -1,6 +1,6 @@
 /*-------------------------------------------------------
  *      File Name: Board.h
- *      Authors: Alice Kuang, Thresa Kelly, Minwood Lee, Justin Sizoo, Maggie Swartz (Group #14)
+ *      Authors: Alice Kuang, Thresa Kelly, Minwoo Lee, Justin Sizoo, Maggie Swartz (Group #14)
  *      Assignment: EECS_448 Project #1
  *      Description: This is the header file for the Board class
  *      Date Last Modified: 02/06/2022
