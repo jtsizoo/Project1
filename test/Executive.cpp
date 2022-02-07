@@ -8,15 +8,17 @@
 
 #include "Executive.h"
 #include <limits>
+#include<iostream>
+#include <cctype>
 
-Executive::Executive(int numShips) {
+Executive::Executive(int numShips, int opShips) {
     m_size = 10;
     PTurn = false;
     p1Board = new Board(m_size, "Player 1");
     p2Board = new Board(m_size, "Player 2");
-	p1Board->printInitialBoard();
+	p1Board->printBoard("Initial");
     chooseShipLoc(p1Board, numShips);
-    chooseShipLoc(p2Board, numShips);
+    chooseShipLoc(p2Board, opShips);
 }
 
 Executive::~Executive() {
@@ -48,15 +50,20 @@ void Executive::run() {
 				col = charToInt(column);
 		  }
 
-        if (board->shootShot(row, col, opBoard)) {
-            std::cout << "HIT:\n\n";
-            board->printShotGrid();
-            if (opBoard->checkWin()) {
+        if (board->shootShot(row, col, opBoard)) { //check for hit or miss
+			if (opBoard->sinkStatus(row, col)) { //check if ship was sunk
+				std::cout << "SUNK!\n\n"; 
+			}
+			else std::cout << "HIT!\n\n"; //if not sunk, it was hit 
+
+			board->printBoard("Shot"); //print the shotGrid
+            
+			if (opBoard->checkWin()) { //check if there is a winner for this round
                 break;
             }
         } else {
-            std::cout << "MISS:\n\n";
-            board->printShotGrid();
+            std::cout << "MISS!\n\n";
+			board->printBoard("Shot");
             Board* temp = board;
             board = opBoard;
             opBoard = temp;
@@ -100,7 +107,7 @@ void Executive::chooseShipLoc(Board* board, int numShips) {
             std::cout << "Error - Invalid Location : Ship already exists here or extends outside board. Try again\n";
           } else {
             inserted = true;
-			board->printPlaceGrid();
+			board->printBoard("Place");
           }
         }
         inserted = false;
@@ -108,6 +115,8 @@ void Executive::chooseShipLoc(Board* board, int numShips) {
     PTurn = !PTurn;
 }
 
+
+//converts character to an integer
 int Executive::charToInt(char c) {
     int colNum = (int)c;
     //ASCII (a-j) -> (97-107)
@@ -115,30 +124,31 @@ int Executive::charToInt(char c) {
     return colNum;
 }
 
+// collect user input for string and ensure it is a valid entry, i.e. follows the row-column format (1a)
 std::string Executive::validateLoc(std::string input) {
     std::cin >> input;
 	bool restrictLength = 0;
-	bool lengthCheck2 = 0;
-	bool lengthCheck3 = 0;
+	bool invalidFormat = 0;
 	bool validChar = 0;
 	if(input.length() < 2 || input.length() > 3) restrictLength = 1; //Restrict the length to strings of 2 or 3
-	if(input.length() == 2)
+	if(input.length() == 2) //i.e. 1 digit followed by 1 letter
 	{
-		if(!isdigit(input[0]) || isdigit(input[1])) lengthCheck2 = 1; 
+		if(!isdigit(input[0]) || isdigit(input[1])) invalidFormat = 1; 
 		if(charToInt(input[1]) >= 0 && charToInt(input[1]) < 10) validChar = 1; //validate lower char case
 		else if(charToInt(input[1]) > -33 && charToInt(input[1]) < -22) validChar = 1; //validate capital char case
 	}
-	else if(input.length() == 3)
+	else if(input.length() == 3) //i.e. 2 digit followed by 1 letter
 	{
-		if(!isdigit(input[0]) || !isdigit(input[1]) || isdigit(input[2]) || (input[0] != '1' && input[1] != '0')) lengthCheck3 = 1;
+		if(!isdigit(input[0]) || !isdigit(input[1]) || isdigit(input[2]) || (input[0] != '1' && input[1] != '0')) invalidFormat = 1;
 		if(charToInt(input[2]) >= 0 && charToInt(input[2]) < 10) validChar = 1; //validate lower char case
 		else if(charToInt(input[2]) > -33 && charToInt(input[2]) < -22) validChar = 1; //validate capital char case
 	}	 
-	while (std::cin.fail() || restrictLength || lengthCheck3 || lengthCheck2 || !validChar) {
+	while (std::cin.fail() || restrictLength || invalidFormat || !validChar) {
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout << "Sorry, your input was invalid. Try again: ";
-		std::cin >> input;
+		if (invalidFormat) std::cout << "Your input should specify the row and then column, i.e. 1a. Try again and hit enter twice to process: ";
+		else std::cout << "Sorry, your input was invalid. Try again and hit enter twice to process: ";
+		input = validateLoc(input); //originally: std::cin >> input; 
 	}
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	return input;
