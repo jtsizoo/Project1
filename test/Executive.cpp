@@ -1,3 +1,11 @@
+/*-------------------------------------------------------
+ *      File Name: Executive.cpp
+ *      Authors: Alice Kuang, Thresa Kelly, Minwood Lee, Justin Sizoo, Maggie Swartz (Group #14)
+ *      Assignment: EECS_448 Project #1
+ *      Description: This is the executable file for the Executive class
+ *      Date Last Modified: 02/06/2022
+ *-----------------------------------------------------*/
+
 #include "Executive.h"
 #include <limits>
 
