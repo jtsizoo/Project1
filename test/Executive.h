@@ -24,10 +24,10 @@ class Executive {
     		/*----------
      		* @pre numShips >=1 && <= 5
      		* @post constructor creates an instance of the Executive class
-     		* @param int numShips (1-5, chosen # of battleships)
+     		* @param int numShips (1-5, chosen # of battleships for first player), int opShips (1-5, chosen # of battleships for second player)
      		* @return no true return, just creates instance of the class
      		* -------*/
-    		Executive(int numShips);
+    		Executive(int numShips, int opShips);
      		/*----------
      		* @pre an instance of Executive class must exist to be deleted
      		* @post Executive class instance is deleted
