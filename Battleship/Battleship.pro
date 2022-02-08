@@ -12,16 +12,19 @@ SOURCES += \
     grid.cpp \
     main.cpp \
     mainwindow.cpp \
+    placeships.cpp \
     startwindow.cpp
 
 HEADERS += \
     grid.h \
     mainwindow.h \
+    placeships.h \
     startwindow.h
 
 FORMS += \
     grid.ui \
     mainwindow.ui \
+    placeships.ui \
     startwindow.ui
 
 # Default rules for deployment.

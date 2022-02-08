@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "placeships.h"
+
 namespace Ui {
 class StartWindow;
 }
@@ -29,6 +31,9 @@ private:
 
     bool shipSelectStatus;  // true when the user selects how many ships to play with
     int shipNumber;         // the number of ships that the user selects
+
+    PlaceShips player1;
+    PlaceShips player2;
 
     void startEnable(bool status);  // allow the start button to be clicked or not
     bool areShipsSelected();        // check if the user has selected how many ships to play with
