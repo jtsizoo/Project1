@@ -9,6 +9,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    fight.cpp \
     grid.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
     startwindow.cpp
 
 HEADERS += \
+    fight.h \
     grid.h \
     mainwindow.h \
     placeships.h \
@@ -24,6 +26,7 @@ HEADERS += \
     startwindow.h
 
 FORMS += \
+    fight.ui \
     grid.ui \
     mainwindow.ui \
     placeships.ui \

@@ -21,5 +21,6 @@ void PlayerWindow::setShipNumber(int ship)
 
 void PlayerWindow::setPlayer(QString player)
 {
+    // update label with player's identity
     ui->player_label->setText( QString("Player %1").arg(player) );
 }
