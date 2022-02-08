@@ -10,6 +10,10 @@ PlaceShips::PlaceShips(QWidget *parent) :
     // initialize variables
     shipNumber = 0;
 
+    // disable buttons
+    ui->done_pushButton->setEnabled(false);
+    ui->place_pushButton->setEnabled(false);
+
     // setup UI
     displayShips();
     initComboBoxes();
@@ -22,13 +26,15 @@ PlaceShips::~PlaceShips()
 
 void PlaceShips::initComboBoxes()
 {
-    // convinience
+    // convinience pointers
     QComboBox * col = ui->col_comboBox;
     QComboBox * row = ui->row_comboBox;
+    QComboBox * dir = ui->direction_comboBox;
 
-    // initialize
+    // clear out all items
     col->clear();
     row->clear();
+    dir->clear();
 
     // fill columns (A-J)
     col->insertItem(0, "A");
@@ -53,6 +59,10 @@ void PlaceShips::initComboBoxes()
     row->insertItem(7, "8");
     row->insertItem(8, "9");
     row->insertItem(9, "10");
+
+    // fill direction
+    dir->insertItem(0,"Vertical");
+    dir->insertItem(0,"Horizontal");
 }
 
 void PlaceShips::setShipNumber(int num)
@@ -67,6 +77,7 @@ void PlaceShips::setShipNumber(int num)
     {
         num = 5;
     }
+
     // set variable
     shipNumber = num;
 
@@ -114,4 +125,5 @@ void PlaceShips::displayShips()
     {
         ui->ship1_radioButton->setVisible(true);
     }
+    // else, no buttons are visible
 }

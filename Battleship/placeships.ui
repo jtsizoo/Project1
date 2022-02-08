@@ -68,18 +68,14 @@
              <widget class="QComboBox" name="row_comboBox"/>
             </item>
             <item>
-             <widget class="QPushButton" name="place_pushButton">
-              <property name="text">
-               <string>Place</string>
-              </property>
-             </widget>
+             <widget class="QComboBox" name="direction_comboBox"/>
             </item>
            </layout>
           </item>
           <item>
-           <widget class="QPushButton" name="rotate_pushButton">
+           <widget class="QPushButton" name="place_pushButton">
             <property name="text">
-             <string>Rotate</string>
+             <string>Place</string>
             </property>
            </widget>
           </item>

@@ -13,18 +13,21 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     placeships.cpp \
+    playerwindow.cpp \
     startwindow.cpp
 
 HEADERS += \
     grid.h \
     mainwindow.h \
     placeships.h \
+    playerwindow.h \
     startwindow.h
 
 FORMS += \
     grid.ui \
     mainwindow.ui \
     placeships.ui \
+    playerwindow.ui \
     startwindow.ui
 
 # Default rules for deployment.

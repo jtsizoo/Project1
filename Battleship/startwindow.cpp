@@ -74,11 +74,15 @@ void StartWindow::on_ship5_radioButton_toggled(bool checked)
 
 void StartWindow::on_start_pushButton_clicked()
 {
-    // pass the number of ships to the ship placement windows
+    // pass the number of ships to the player windows
     player1.setShipNumber(shipNumber);
     player2.setShipNumber(shipNumber);
 
-    // open player 1 and player 2 ship placement windows
+    // set player numbers for label
+    player1.setPlayer("1");
+    player2.setPlayer("2");
+
+    // open player 1 and player 2 windows
     player1.show();
     player2.show();
 
