@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1,1">
     <item alignment="Qt::AlignHCenter">
      <widget class="QLabel" name="player_label">
       <property name="text">
@@ -24,6 +24,9 @@
     </item>
     <item>
      <widget class="PlaceShips" name="place_ships" native="true"/>
+    </item>
+    <item>
+     <widget class="fight" name="player_fight" native="true"/>
     </item>
    </layout>
   </widget>
@@ -44,6 +47,12 @@
    <class>PlaceShips</class>
    <extends>QWidget</extends>
    <header>placeships.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>fight</class>
+   <extends>QWidget</extends>
+   <header>fight.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

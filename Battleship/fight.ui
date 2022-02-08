@@ -107,7 +107,7 @@
        <item>
         <widget class="QLabel" name="statusUpdate_label">
          <property name="text">
-          <string>hit/miss</string>
+          <string>update</string>
          </property>
         </widget>
        </item>
