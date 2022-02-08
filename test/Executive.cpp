@@ -11,19 +11,19 @@
 #include<iostream>
 #include <cctype>
 
-Executive::Executive(int numShips) {
-    m_size = 10;
-    PTurn = false;
-    p1Board = new Board(m_size, "Player 1");
-    p2Board = new Board(m_size, "Player 2");
-	p1Board->printBoard("Initial");
-    chooseShipLoc(p1Board, numShips);
-    chooseShipLoc(p2Board, numShips);
+Executive::Executive(int numShips) { //Constructor for Executive class, takes in selected number of ships as a parameter.
+	m_size = 10; //Sets member variable m_size equal to 10 (creation of 10x10 playing board.
+	PTurn = false; //Variable PTurn keeps track of which player's turn it is, starts at false so Player 1 will go first.
+	p1Board = new Board(m_size, "Player 1"); //Creates instance of Board class for Player 1, takes in m_size and name "Player 1" as parameters.
+	p2Board = new Board(m_size, "Player 2"); //Creates instance of Board class for Player 2, take in m_size and name "Player 2" as parameters.
+	p1Board->printBoard("Initial"); //Prints out initial board prior to ship location selection.
+	chooseShipLoc(p1Board, numShips); //Player 1 places their ships on their board w/ selected number of ships.
+	chooseShipLoc(p2Board, numShips); //Player 2 places their ships on their board w/ selected number of ships.
 }
 
-Executive::~Executive() {
-    delete p1Board;
-    delete p2Board;
+Executive::~Executive() { //Destructor for the Executive class.
+    delete p1Board; //Deletes instance of Board class associated with Player 1.
+    delete p2Board; //Deletes instance of Board class associated with Player 2.
 }
 
 void Executive::run() {
@@ -115,13 +115,10 @@ void Executive::chooseShipLoc(Board* board, int numShips) {
     PTurn = !PTurn;
 }
 
-
-//converts character to an integer
-int Executive::charToInt(char c) {
-    int colNum = (int)c;
-    //ASCII (a-j) -> (97-107)
-    colNum -= 97;
-    return colNum;
+int Executive::charToInt(char c) { //charToInt takes in a character and converts that to the ASCII correlated integer value.
+    int colNum = (int)c; //Set colNum variable equal to (int)c.
+    colNum -= 97; //ASCII (a-j) is equal to 97 to 107, so subtract off 97 to convert to correct integer value.
+    return colNum; //Return colNum integer value.
 }
 
 // collect user input for string and ensure it is a valid entry, i.e. follows the row-column format (1a)
@@ -154,15 +151,15 @@ std::string Executive::validateLoc(std::string input) {
 	return input;
 }
 
-char Executive::validateDirection(char input) {
-    std::cin >> input;
-    input = tolower(input);
-	while (std::cin.fail() || (input != 'h' && input != 'v')) {
-		std::cin.clear();
+char Executive::validateDirection(char input) { //validateDirection function interprets user input for orientation, returns 'v'(vertical)  or 'h' (horizontal).
+    std::cin >> input; //Takes in user input to determine ship orientation.
+    input = tolower(input); //Convets input to lowercase equivalent if not already lowercase (H==h and V==v).
+	while (std::cin.fail() || (input != 'h' && input != 'v')) { //If user input is not h for horizontal or v for vertical...
+		std::cin.clear(); //Using cin.fail functionality...
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout << "Sorry, your input was invalid. Try again: ";
+		std::cout << "Sorry, your input was invalid. Try again: "; //Display error message and give user opportunity to input until acceptable input.
 		std::cin >> input;
 	}
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	return input;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+	return input; //Return input value as 'v' or 'h' to reprsent desired orientation. 
 }
