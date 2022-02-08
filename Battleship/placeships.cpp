@@ -67,8 +67,11 @@ void PlaceShips::setShipNumber(int num)
     {
         num = 5;
     }
-
+    // set variable
     shipNumber = num;
+
+    // update display
+    displayShips();
 }
 
 void PlaceShips::displayShips()

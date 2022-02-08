@@ -82,7 +82,7 @@ void StartWindow::on_start_pushButton_clicked()
     player1.show();
     player2.show();
 
-    // disable start window
-    this->setDisabled(true);
+    // close start window
+    this->close();
 }
 
