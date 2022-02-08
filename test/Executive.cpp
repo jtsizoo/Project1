@@ -38,13 +38,13 @@ void Executive::run() { //Void run function enables all gameplay functionality.
         	shot = validateLoc(shot); //Validate shot location.
 			if(shot.length() ==3) { //If function helps to process shot location if in row 10 (legnth is 3 due to char + 10).
 				row = 9; //If we are in row = 10...
-				column = tolower(shot[2]); 
+				column = tolower(shot[2]);
 				col = charToInt(column); //Then correctly concert to integer to identify appropriate location.
 		  	} else { //Else if we are in rows 1-9...
 				row = (int)shot[0] - 49; //Convert string to appropriate location identification.
 				column = tolower(shot[1]);
 				col = charToInt(column);
-		  	}	
+		  	}
         	if (board->shootShot(row, col, opBoard)) { //Check to see if there was a hit or miss at shot location.
 			if (opBoard->sinkStatus(row, col)) { //See if this shot resulted in the sinking of a ship...
 				std::cout << "SUNK!\n\n"; //If it did, output message indicating sunk status.
@@ -52,10 +52,10 @@ void Executive::run() { //Void run function enables all gameplay functionality.
 			else std::cout << "HIT!\n\n"; //If not sunk, but a hit did occur, then issue message indicating hit status.
 
 			board->printBoard("Shot"); //Print the updated shotGrid.
-            
+
 			if (opBoard->checkWin()) { //Check to see if this round of gameplay resulted in a winner.
                 	break;
-            		}	
+            		}
         	} else { //Else, a hit did not occur in this round of gameplay.
             		std::cout << "MISS!\n\n"; //Output message indicating a miss occured.
 			board->printBoard("Shot"); //Print shot board.
@@ -63,15 +63,15 @@ void Executive::run() { //Void run function enables all gameplay functionality.
             		board = opBoard; //Set equal to opponent's board.
             		opBoard = temp; //Set opponent's board equal to temp.
             		PTurn = !PTurn; //Change PTurn so it will be the next player's turn.
-        	}	
-    	}	
+        	}
+    	}
     	std::cout << "\nGame end: Player " << PTurn+1 << " wins.\n"; //If we exited the while loop, one of the players won, output message indicating win.
 }
 
 void Executive::chooseShipLoc(Board* board, int numShips) { //chooseShipLoc function places ships with board pointer and numShips desired as parameters.
 	std::string shipLoc = ""; //Initializes shipLoc to empty string.
 	int row = 0; //Initializes row integer to 0.
-	int col = 0; //Initializes column integer to 0. 
+	int col = 0; //Initializes column integer to 0.
 	char column; //Char variable representing column.
 	char direction; //Char variable representing ship direction (orientation).
 	bool inserted = false; //Boolean variable keeps track of whether the ship was inserted, initialized to false.
@@ -87,7 +87,7 @@ void Executive::chooseShipLoc(Board* board, int numShips) { //chooseShipLoc func
 			  		row = (int)shipLoc[0] - 49;
 			  		column = tolower(shipLoc[1]);
 			  		col = charToInt(column);
-		  		}	
+		  		}
 		  		if (i == 0) {
 					direction = 'H'; //If i=0, the first ship is being entered and a direction is not necessary.
 				} else { //Else have user input if they want the ship oriented horizontally or vertically.
@@ -99,7 +99,7 @@ void Executive::chooseShipLoc(Board* board, int numShips) { //chooseShipLoc func
           			} else {
            				inserted = true; //Else, ship was inserted at desired location/orientation successfully!
 					board->printBoard("Place"); //Mark the change on the place board.
-          			}		
+          			}
         	} //Closes out while loop.
         inserted = false;
 	} //Closes out for loop.
@@ -120,22 +120,22 @@ std::string Executive::validateLoc(std::string input) { //Collects user input fo
 	if(input.length() < 2 || input.length() > 3) restrictLength = 1; //Restrict the length to strings of 2 or 3.
 	if(input.length() == 2) //i.e. 1 digit followed by 1 letter.
 	{
-		if(!isdigit(input[0]) || isdigit(input[1])) invalidFormat = 1; 
+		if(!isdigit(input[0]) || isdigit(input[1])) invalidFormat = 1;
 		if(charToInt(input[1]) >= 0 && charToInt(input[1]) < 10) validChar = 1; //Validate lowercase char case.
 		else if(charToInt(input[1]) > -33 && charToInt(input[1]) < -22) validChar = 1; //Validate uppercase char case.
 	}
 	else if(input.length() == 3) //i.e. 2 digit followed by 1 letter.
 	{
-		if(!isdigit(input[0]) || !isdigit(input[1]) || isdigit(input[2]) || (input[0] != '1' && input[1] != '0')) invalidFormat = 1;
+		if(!isdigit(input[0]) || !isdigit(input[1]) || isdigit(input[2]) || (input[0] != 1 && input[1] != 0)) invalidFormat = 1;
 		if(charToInt(input[2]) >= 0 && charToInt(input[2]) < 10) validChar = 1; //Validate lowercase char case.
 		else if(charToInt(input[2]) > -33 && charToInt(input[2]) < -22) validChar = 1; //Validate uppercase char case.
-	}	 
+	}
 	while (std::cin.fail() || restrictLength || invalidFormat || !validChar) { //While innapropriate input occurs...
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //Utilize cin.fail and output error message, need correct input to continue.
 		if (invalidFormat) std::cout << "Your input should specify the row and then column, i.e. 1a. Try again and hit enter twice to process: ";
 		else std::cout << "Sorry, your input was invalid. Try again and hit enter twice to process: ";
-		input = validateLoc(input); //originally: std::cin >> input; 
+		input = validateLoc(input); //originally: std::cin >> input;
 	}
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	return input; //Return std::string input that has been validated.
@@ -150,7 +150,6 @@ char Executive::validateDirection(char input) { //validateDirection function int
 		std::cout << "Sorry, your input was invalid. Try again: "; //Display error message and give user opportunity to input until acceptable input.
 		std::cin >> input;
 	}
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
-	return input; //Return input value as 'v' or 'h' to reprsent desired orientation. 
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	return input; //Return input value as 'v' or 'h' to reprsent desired orientation.
 }
-
