@@ -9,10 +9,15 @@ PlaceShips::PlaceShips(QWidget *parent) :
 
     // initialize variables
     shipNumber = 0;
+    ship1 = false;
+    ship2 = false;
+    ship3 = false;
+    ship4 = false;
+    ship5 = false;
 
     // disable buttons
-//    ui->done_pushButton->setEnabled(false);   // enable only when all ships are placed
-    ui->place_pushButton->setEnabled(false);    // enable only when available coordinant is selected
+    ui->done_pushButton->setEnabled(false);   // enable only when all ships are placed
+//    ui->place_pushButton->setEnabled(false);    // enable only when available coordinant is selected
 
     // setup UI
     displayShips();
@@ -135,4 +140,43 @@ void PlaceShips::on_done_pushButton_clicked()
     // tell parent window that user is done placing ships
     emit done(true);
 }
+
+
+void PlaceShips::on_place_pushButton_clicked()
+{
+    // set the ship flag that was placed to true
+    if(ui->ship1_radioButton->isChecked())      ship1 = true;
+    else if(ui->ship2_radioButton->isChecked()) ship2 = true;
+    else if(ui->ship3_radioButton->isChecked()) ship3 = true;
+    else if(ui->ship4_radioButton->isChecked()) ship4 = true;
+    else                                        ship5 = true;
+
+    // check if all ships are placed
+    checkAllShips();
+}
+
+void PlaceShips::checkAllShips()
+{
+    if(shipNumber == 1 && ship1 )
+    {
+        ui->done_pushButton->setEnabled(true);
+    }
+    else if(shipNumber == 2 && ship1 && ship2)
+    {
+        ui->done_pushButton->setEnabled(true);
+    }
+    else if(shipNumber == 3 && ship1 && ship2 && ship3)
+    {
+        ui->done_pushButton->setEnabled(true);
+    }
+    else if(shipNumber == 4 && ship1 && ship2 && ship3 && ship4)
+    {
+        ui->done_pushButton->setEnabled(true);
+    }
+    else if(shipNumber == 5 && ship1 && ship2 && ship3 && ship4 && ship5)
+    {
+        ui->done_pushButton->setEnabled(true);
+    }
+}
+
 

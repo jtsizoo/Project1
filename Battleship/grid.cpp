@@ -40,7 +40,7 @@ void Grid::init()
         }
     }
 
-    // user canot edit grid
+    // make so user canot edit grid
     ui->gameGrid_tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
