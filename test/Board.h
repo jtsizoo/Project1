@@ -55,11 +55,11 @@ class Board {
 	bool shootShot(int row, int col, Board* opBoard);
 
 	/*----------
-	 * @pre shootShot function returned true since a ship was hit
-	 * @post returns T/F value for whether a given length ship was entirely sunk
-	 * @param row/col represents x/y location of the ship
-	 * @return boolean value T or F, respresenting whether a ship was sunk
-	 * -------*/
+	    * @pre shootShot function returned true since a ship was hit
+	    * @post returns T/F value for whether a given length ship was entirely sunk
+	    * @param row/col represents x/y location of the ship
+	    * @return boolean value T or F, respresenting whether a ship was sunk
+	    * -------*/
 	bool sinkStatus(int row, int col);
 
 	/*----------
@@ -78,10 +78,10 @@ class Board {
         * -------*/
 	bool checkWin();
 
-	/*----------
+    /*----------
         * @pre none
-        * @post prints the shotGrid for either player
-        * @param none
+        * @post prints the grid of the specified boardType
+        * @param string specifying the boardType (initialGrid, placeGrid, or shotGrid)
         * @return none - void function
         * -------*/
 	void printBoard(std::string boardType);
