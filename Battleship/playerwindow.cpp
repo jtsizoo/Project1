@@ -7,8 +7,9 @@ PlayerWindow::PlayerWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // show ship select and hide fight
+    // setup UI
     showPlaceShips(true);
+    ui->wait_label->setVisible(false);
 
     // connect signal and slots
     connect(ui->place_ships, SIGNAL(done(bool)), this, SLOT(OnPlayerDone(bool)));
@@ -36,9 +37,14 @@ void PlayerWindow::showPlaceShips(bool show)
     // only one widget can be visible at a time
     ui->place_ships->setVisible(show);
     ui->player_fight->setVisible(!show);
+
+    // reinitialize
+    ui->wait_label->setVisible(false);
 }
 
 void PlayerWindow::OnPlayerDone(bool show)
 {
+    ui->place_ships->setDisabled(true);
+    ui->wait_label->setVisible(true);
     emit playerDone(show);
 }

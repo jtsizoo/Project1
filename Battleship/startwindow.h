@@ -26,8 +26,8 @@ private slots:
 
     void on_start_pushButton_clicked();
 
-    void OnPlayer1Done_Ships(bool);
-    void OnPlayer2Done_Ships(bool);
+    void OnPlayer1Done_Ships(bool done);
+    void OnPlayer2Done_Ships(bool done);
 
 private:
     Ui::StartWindow *ui;
@@ -35,11 +35,16 @@ private:
     bool shipSelectStatus;  // true when the user selects how many ships to play with
     int shipNumber;         // the number of ships that the user selects
 
-    PlayerWindow * player1;
-    PlayerWindow * player2;
+    PlayerWindow * player1; // player 1 window
+    PlayerWindow * player2; // player 2 window
+
+    bool player1_shipsDone;
+    bool player2_shipsDone;
 
     void startEnable(bool status);  // allow the start button to be clicked or not
     bool areShipsSelected();        // check if the user has selected how many ships to play with
+
+    void showGameMode();
 };
 
 #endif // STARTWINDOW_H

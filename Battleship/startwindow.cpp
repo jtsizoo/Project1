@@ -13,6 +13,8 @@ StartWindow::StartWindow(QWidget *parent) :
     // initialize variables
     shipSelectStatus = 0;
     shipNumber = 0;
+    player1_shipsDone = false;
+    player2_shipsDone = false;
 
     // create players
     player1 = new PlayerWindow();
@@ -100,16 +102,29 @@ void StartWindow::on_start_pushButton_clicked()
     player2->show();
 
     // hide start window
-    this->setVisible(false);
+    this->setDisabled(true);
+//    this->setVisible(false);
 }
 
-void StartWindow::OnPlayer1Done_Ships(bool)
+void StartWindow::OnPlayer1Done_Ships(bool done)
 {
-
+    player1_shipsDone = done;
+    showGameMode();
 }
 
-void StartWindow::OnPlayer2Done_Ships(bool)
+void StartWindow::OnPlayer2Done_Ships(bool done)
 {
-
+    player2_shipsDone = done;
+    showGameMode();
 }
 
+void StartWindow::showGameMode()
+{
+    // check if both players are done
+    if(player1_shipsDone && player2_shipsDone)
+    {
+        // change to fight widget
+        player1->showPlaceShips(false);
+        player2->showPlaceShips(false);
+    }    
+}

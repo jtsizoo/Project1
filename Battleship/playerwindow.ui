@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1,1">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1,0,1">
     <item alignment="Qt::AlignHCenter">
      <widget class="QLabel" name="player_label">
       <property name="frameShape">
@@ -27,6 +27,13 @@
     </item>
     <item>
      <widget class="PlaceShips" name="place_ships" native="true"/>
+    </item>
+    <item alignment="Qt::AlignHCenter">
+     <widget class="QLabel" name="wait_label">
+      <property name="text">
+       <string>Waiting for opponent...</string>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="fight" name="player_fight" native="true"/>
