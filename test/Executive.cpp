@@ -126,7 +126,9 @@ std::string Executive::validateLoc(std::string input) { //Collects user input fo
 	}
 	else if(input.length() == 3) //i.e. 2 digit followed by 1 letter.
 	{
-		if(!isdigit(input[0]) || !isdigit(input[1]) || isdigit(input[2]) || (input[0] != 1 && input[1] != 0)) invalidFormat = 1;
+		int firstNum = input[0]; //If the first digit is 1, this will have an ASCII of 48
+		int secondNum = input[1]; //If the first digit is 1, this will have an ASCII of 49
+		if(!isdigit(input[0]) || !isdigit(input[1]) || isdigit(input[2]) || (firstNum != 49 || secondNum != 48)) invalidFormat = 1;
 		if(charToInt(input[2]) >= 0 && charToInt(input[2]) < 10) validChar = 1; //Validate lowercase char case.
 		else if(charToInt(input[2]) > -33 && charToInt(input[2]) < -22) validChar = 1; //Validate uppercase char case.
 	}
