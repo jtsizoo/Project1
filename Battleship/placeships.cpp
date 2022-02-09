@@ -17,7 +17,7 @@ PlaceShips::PlaceShips(QWidget *parent) :
 
     // disable buttons
     ui->done_pushButton->setEnabled(false);   // enable only when all ships are placed
-//    ui->place_pushButton->setEnabled(false);    // enable only when available coordinant is selected
+    ui->place_pushButton->setEnabled(false);    // enable only when available coordinant is selected
 
     // setup UI
     displayShips();
@@ -67,7 +67,7 @@ void PlaceShips::initComboBoxes()
 
     // fill direction
     dir->insertItem(0,"Vertical");
-    dir->insertItem(0,"Horizontal");
+    dir->insertItem(1,"Horizontal");
 }
 
 void PlaceShips::setShipNumber(int num)
@@ -136,6 +136,7 @@ void PlaceShips::displayShips()
 void PlaceShips::on_done_pushButton_clicked()
 {
     // TODO: save player board
+    // ...code TODO here ...
 
     // tell parent window that user is done placing ships
     emit done(true);
@@ -144,12 +145,42 @@ void PlaceShips::on_done_pushButton_clicked()
 
 void PlaceShips::on_place_pushButton_clicked()
 {
-    // set the ship flag that was placed to true
-    if(ui->ship1_radioButton->isChecked())      ship1 = true;
-    else if(ui->ship2_radioButton->isChecked()) ship2 = true;
-    else if(ui->ship3_radioButton->isChecked()) ship3 = true;
-    else if(ui->ship4_radioButton->isChecked()) ship4 = true;
-    else                                        ship5 = true;
+    // TODO: place ship on grid.
+
+    // Note: place button is only enabled when there is available space. So, assume valid coordinants.
+
+    // initialize variable
+    int shipSize = 0;
+
+    // set the ship flag that was placed to true and assign shipSize
+    if(ui->ship1_radioButton->isChecked())
+    {
+        ship1 = true;
+        shipSize = 1;
+    }
+    else if(ui->ship2_radioButton->isChecked())
+    {
+        ship2 = true;
+        shipSize = 2;
+    }
+    else if(ui->ship3_radioButton->isChecked())
+    {
+        ship3 = true;
+        shipSize = 3;
+    }
+    else if(ui->ship4_radioButton->isChecked())
+    {
+        ship4 = true;
+        shipSize = 4;
+    }
+    else
+    {
+        ship5 = true;
+        shipSize = 5;
+    }
+
+    // ... code TODO here ...
+    // ... tip: use shipSize, maybe create a method that takes it as parameter
 
     // check if all ships are placed
     checkAllShips();
@@ -157,6 +188,7 @@ void PlaceShips::on_place_pushButton_clicked()
 
 void PlaceShips::checkAllShips()
 {
+    // if all available ships have been placed, allow user to click "Done" button
     if(shipNumber == 1 && ship1 )
     {
         ui->done_pushButton->setEnabled(true);
@@ -179,4 +211,60 @@ void PlaceShips::checkAllShips()
     }
 }
 
+void PlaceShips::checkCoordinant(int row, int col, int shipSize, bool isHorizontal)
+{
+    // TODO: check if ship can be placed at this coordinant
+
+    // initialize variable
+    bool isAvailable = true;
+
+    // ... code TODO here ...
+    // ... tip: change isAvailable to false if the coordinant is invalid
+
+    ui->place_pushButton->setEnabled(isAvailable);
+}
+
+int PlaceShips::getRowCoordinant()
+{
+    // the index (0-9) of the row (1-10) is the location in Grid
+    return(ui->row_comboBox->currentIndex());
+}
+
+int PlaceShips::getColCoordinant()
+{
+    // the index (0-9) of the column (A-J) is the location in Grid
+    return(ui->row_comboBox->currentIndex());
+}
+
+bool PlaceShips::getDirection()
+{
+    // index 0 = vertical
+    // index 1 = horizontal
+    return(ui->direction_comboBox->currentIndex());
+}
+
+void PlaceShips::on_ship1_radioButton_clicked()
+{
+    checkCoordinant(getRowCoordinant(), getColCoordinant(), 1, getDirection());
+}
+
+void PlaceShips::on_ship2_radioButton_clicked()
+{
+    checkCoordinant(getRowCoordinant(), getColCoordinant(), 2, getDirection());
+}
+
+void PlaceShips::on_ship3_radioButton_clicked()
+{
+    checkCoordinant(getRowCoordinant(), getColCoordinant(), 3, getDirection());
+}
+
+void PlaceShips::on_ship4_radioButton_clicked()
+{
+    checkCoordinant(getRowCoordinant(), getColCoordinant(), 4, getDirection());
+}
+
+void PlaceShips::on_ship5_radioButton_clicked()
+{
+    checkCoordinant(getRowCoordinant(), getColCoordinant(), 5, getDirection());
+}
 
