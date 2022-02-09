@@ -17,6 +17,9 @@
    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1,1">
     <item alignment="Qt::AlignHCenter">
      <widget class="QLabel" name="player_label">
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
       <property name="text">
        <string>Player #</string>
       </property>

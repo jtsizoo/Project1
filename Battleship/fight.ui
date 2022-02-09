@@ -105,7 +105,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="statusUpdate_label">
+        <widget class="QLabel" name="update_label">
          <property name="text">
           <string>update</string>
          </property>

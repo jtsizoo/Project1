@@ -11,7 +11,7 @@ PlaceShips::PlaceShips(QWidget *parent) :
     shipNumber = 0;
 
     // disable buttons
-    ui->done_pushButton->setEnabled(false);
+//    ui->done_pushButton->setEnabled(false);
     ui->place_pushButton->setEnabled(false);
 
     // setup UI
@@ -127,3 +127,12 @@ void PlaceShips::displayShips()
     }
     // else, no buttons are visible
 }
+
+void PlaceShips::on_done_pushButton_clicked()
+{
+    // TODO: save player board
+
+    // tell parent window that user is done placing ships
+    emit done(true);
+}
+

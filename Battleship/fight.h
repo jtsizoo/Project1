@@ -2,6 +2,7 @@
 #define FIGHT_H
 
 #include <QWidget>
+#include <QString>
 
 namespace Ui {
 class fight;
@@ -15,8 +16,13 @@ public:
     explicit fight(QWidget *parent = nullptr);
     ~fight();
 
+    void setUpdateText(QString update);
+    void setPlayerText(QString player);
+
 private:
     Ui::fight *ui;
+
+    void initComboBoxes();
 };
 
 #endif // FIGHT_H

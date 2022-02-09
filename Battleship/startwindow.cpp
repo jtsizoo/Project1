@@ -7,13 +7,30 @@ StartWindow::StartWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // setup UI
     ui->start_pushButton->setEnabled(false);
+
+    // initialize variables
     shipSelectStatus = 0;
     shipNumber = 0;
+
+    // create players
+    player1 = new PlayerWindow();
+    player2 = new PlayerWindow();
+    // set player numbers for label
+    player1->setPlayer("1");
+    player2->setPlayer("2");
+
+    //connect signals and slots
+    connect(player1, SIGNAL(playerDone(bool)), this, SLOT(OnPlayer1Done_Ships(bool)));
+    connect(player2, SIGNAL(playerDone(bool)), this, SLOT(OnPlayer2Done_Ships(bool)));
 }
 
 StartWindow::~StartWindow()
 {
+    delete player1;
+    delete player2;
+
     delete ui;
 }
 
@@ -75,18 +92,24 @@ void StartWindow::on_ship5_radioButton_toggled(bool checked)
 void StartWindow::on_start_pushButton_clicked()
 {
     // pass the number of ships to the player windows
-    player1.setShipNumber(shipNumber);
-    player2.setShipNumber(shipNumber);
-
-    // set player numbers for label
-    player1.setPlayer("1");
-    player2.setPlayer("2");
+    player1->setShipNumber(shipNumber);
+    player2->setShipNumber(shipNumber);
 
     // open player 1 and player 2 windows
-    player1.show();
-    player2.show();
+    player1->show();
+    player2->show();
 
-    // close start window
-    this->close();
+    // hide start window
+    this->setVisible(false);
+}
+
+void StartWindow::OnPlayer1Done_Ships(bool)
+{
+
+}
+
+void StartWindow::OnPlayer2Done_Ships(bool)
+{
+
 }
 

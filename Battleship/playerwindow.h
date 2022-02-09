@@ -19,9 +19,15 @@ public:
     void setShipNumber(int ship);
     void setPlayer(QString player);
 
+private slots:
+    void OnPlayerDone(bool done);
+
 private:
     Ui::PlayerWindow *ui;
 
+    void showPlaceShips(bool show);
+signals:
+    void playerDone(bool done);
 };
 
 #endif // PLAYERWINDOW_H

@@ -17,6 +17,9 @@ public:
 
     void setShipNumber(int num);
 
+private slots:
+    void on_done_pushButton_clicked();
+
 private:
     Ui::PlaceShips *ui;
 
@@ -24,6 +27,9 @@ private:
 
     void displayShips();
     void initComboBoxes();
+
+signals:
+    void done(bool show);
 };
 
 #endif // PLACESHIPS_H
