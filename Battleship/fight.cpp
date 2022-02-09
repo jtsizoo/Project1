@@ -59,7 +59,7 @@ void fight::setUpdateText(QString update)
 
     // status examples:
     //      Player 1 hit at A1
-    //      Player 2 missed B2
+    //      Player 2 missed at B2
     //      Player 1 wins!
     //      Player 2 loses...
 }
@@ -68,4 +68,8 @@ void fight::setPlayerText(QString player)
 {
     // change text to show who's turn it is
     ui->playerTurn_label->setText(player);
+
+    // player text options:
+    //      Player 1
+    //      Player 2
 }

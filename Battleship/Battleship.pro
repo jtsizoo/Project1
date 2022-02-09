@@ -12,7 +12,6 @@ SOURCES += \
     fight.cpp \
     grid.cpp \
     main.cpp \
-    mainwindow.cpp \
     placeships.cpp \
     playerwindow.cpp \
     startwindow.cpp
@@ -20,7 +19,6 @@ SOURCES += \
 HEADERS += \
     fight.h \
     grid.h \
-    mainwindow.h \
     placeships.h \
     playerwindow.h \
     startwindow.h
@@ -28,7 +26,6 @@ HEADERS += \
 FORMS += \
     fight.ui \
     grid.ui \
-    mainwindow.ui \
     placeships.ui \
     playerwindow.ui \
     startwindow.ui

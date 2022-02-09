@@ -11,8 +11,8 @@ PlaceShips::PlaceShips(QWidget *parent) :
     shipNumber = 0;
 
     // disable buttons
-//    ui->done_pushButton->setEnabled(false);
-    ui->place_pushButton->setEnabled(false);
+//    ui->done_pushButton->setEnabled(false);   // enable only when all ships are placed
+    ui->place_pushButton->setEnabled(false);    // enable only when available coordinant is selected
 
     // setup UI
     displayShips();
@@ -125,7 +125,7 @@ void PlaceShips::displayShips()
     {
         ui->ship1_radioButton->setVisible(true);
     }
-    // else, no buttons are visible
+    // else, no radio buttons are visible
 }
 
 void PlaceShips::on_done_pushButton_clicked()

@@ -16,13 +16,13 @@ public:
     explicit fight(QWidget *parent = nullptr);
     ~fight();
 
-    void setUpdateText(QString update);
-    void setPlayerText(QString player);
+    void setUpdateText(QString update); // change the status of the game
+    void setPlayerText(QString player); // change to current player
 
 private:
     Ui::fight *ui;
 
-    void initComboBoxes();
+    void initComboBoxes();  // add coordinants to combo boxes
 };
 
 #endif // FIGHT_H

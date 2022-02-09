@@ -16,18 +16,18 @@ public:
     explicit PlayerWindow(QWidget *parent = nullptr);
     ~PlayerWindow();
 
-    void setShipNumber(int ship);
-    void setPlayer(QString player);
-    void showPlaceShips(bool show);
+    void setShipNumber(int ship);   // set the number of ships per player
+    void setPlayer(QString player); // set the name/ID of the player
+    void showPlaceShips(bool show); // if true, show the placeShips Widget. Otherwise, show fight widget.
 
 private slots:
-    void OnPlayerDone(bool done);
+    void OnPlayerDone(bool done);   // disable widget when player is done placing ships
 
 private:
     Ui::PlayerWindow *ui;
 
 signals:
-    void playerDone(bool done);
+    void playerDone(bool done);     // emit when player is done placing ships
 };
 
 #endif // PLAYERWINDOW_H
