@@ -8,7 +8,7 @@
 
 #include "Executive.h"
 #include <limits>
-#include<iostream>
+#include <iostream>
 #include <cctype>
 
 Executive::Executive(int numShips) { //Constructor for Executive class, takes in selected number of ships as a parameter.
@@ -65,11 +65,10 @@ void Executive::run() { //Void run function enables all gameplay functionality.
             		Board* temp = board; //Create temp board.
             		board = opBoard; //Set equal to opponent's board.
             		opBoard = temp; //Set opponent's board equal to temp.
-            		PTurn = !PTurn; //Change PTurn so it will be the next player's turn.
         	}
 			std::cout << "Press the Y key to confirm player switch: ";
 			std::cin >> confirm;
-			while (std::cin.fail() || confirm != 'Y') { //While innapropriate input occurs...
+			while (std::cin.fail() || (confirm != 'Y' && confirm != 'y')) { //While innapropriate input occurs...
 				std::cin.clear();
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //Utilize cin.fail and output error message, need correct input to continue.
 				std::cout << "Invalid Input - Press the Y key to confirm player switch: ";
@@ -121,7 +120,7 @@ void Executive::chooseShipLoc(Board* board, int numShips) {//chooseShipLoc funct
 	} //Closes out for loop.
 	std::cout << "Press the Y key to confirm player switch: ";
 	std::cin >> confirm;
-	while (std::cin.fail() || confirm != 'Y') { //While innapropriate input occurs...
+	while (std::cin.fail() || (confirm != 'Y' && confirm != 'y')) { //While innapropriate input occurs...
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //Utilize cin.fail and output error message, need correct input to continue.
 		std::cout << "Invalid Input - Press the Y key to confirm player switch: ";
