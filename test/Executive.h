@@ -68,6 +68,7 @@ class Executive {
      		* @return std::string, representation as to whether or not a valid location was chosen
      		* -------*/
     		std::string validateLoc(std::string input);
+			bool inputChecks(std::string input);
      		
 		/*----------
      		* @pre char input must be V (for vertical) or H (for horizontal) for meaningful orientation
