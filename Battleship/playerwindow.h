@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QString>
+#include "Board.h"
 
 namespace Ui {
 class PlayerWindow;
@@ -13,6 +14,8 @@ class PlayerWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    Board board;
+
     explicit PlayerWindow(QWidget *parent = nullptr);
     ~PlayerWindow();
 

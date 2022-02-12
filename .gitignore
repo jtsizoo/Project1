@@ -3,6 +3,8 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+build-Battleship-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/
+
 # User-specific files
 *.rsuser
 *.suo

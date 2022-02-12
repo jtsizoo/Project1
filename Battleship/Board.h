@@ -14,13 +14,10 @@
 
 class Board {
     private:
-    std::string player; //std::string representing player name
     int m_size; //member variable m_size, representing size of board
     char** initialGrid; //2D array of characters, representing initialGrid (the resulting grid after player places their own battleships)
     char** placeGrid; //2D array of characters, representing placeGrid (where a player places their own battleships)
     char** shotGrid; //2D array of characters, representing shotGrid (where a player tries to hit opponent's battleships and records results)
-    int printCol[10] = {1,2,3,4,5,6,7,8,9,10}; //Array of integers, of size 10, filled w/ headers for column positions.
-    char printRow[10] = {'A','B','C','D','E','F','G','H','I','J'}; //Array of characters, of size 10, filled w/ headers for row positions.
 
     public:
     /*----------
@@ -29,7 +26,7 @@ class Board {
         * @param integer size - size of ship, and std::string playerNum - representing name of player
         * @return an instance of the Board class
         * -------*/
-    Board(int size, std::string playerNum);
+    Board(int size = 10);
 
     /*----------
         * @pre an instance of Board class must exist to be deleted
@@ -45,7 +42,7 @@ class Board {
         * @param row/col represent x/y location, size is size of ship to be inserted, dir char is V or H representing vertical or horizontal
         * @return boolean value T or F, whether a ship can be inserted at the desired location w/ the desired orientation
         * -------*/
-    bool insertShip(int size, int row, int col, char dir);
+    bool insertShip(int size, int row, int col, bool dir);
 
     /*----------
         * @pre both player's must have already placed their ships in their own placeGrid

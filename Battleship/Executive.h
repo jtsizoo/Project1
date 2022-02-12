@@ -1,6 +1,7 @@
 #ifndef EXECUTIVE_H
 #define EXECUTIVE_H
 
+#include "Board.h"
 class Executive {
     private:
         int m_size; //Integer variable representing size of battleship board (10x10)
