@@ -76,12 +76,9 @@ void Executive::run() { //Void run function enables all gameplay functionality.
 				std::cin >> confirm;
 			}
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			if(confirm == 'Y')
-			{
-				PTurn = !PTurn; //Update PTurn to move onto the next player and allow them to place their ships or start gameplay.
-				std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-				std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-			}
+			PTurn = !PTurn; //Update PTurn to move onto the next player and allow them to place their ships or start gameplay.
+			std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+			std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     	}
     	std::cout << "\nGame end: Player " << PTurn+1 << " wins.\n"; //If we exited the while loop, one of the players won, output message indicating win.
 }
@@ -131,11 +128,8 @@ void Executive::chooseShipLoc(Board* board, int numShips) {//chooseShipLoc funct
 		std::cin >> confirm;
 	}
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	if(confirm == 'Y')
-	{
-		PTurn = !PTurn; //Update PTurn to move onto the next player and allow them to place their ships or start gameplay.
-		std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-	}
+	PTurn = !PTurn; //Update PTurn to move onto the next player and allow them to place their ships or start gameplay.
+	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 }
 
 int Executive::charToInt(char c) { //charToInt takes in a character and converts that to the ASCII correlated integer value.

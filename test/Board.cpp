@@ -51,7 +51,7 @@ bool Board::insertShip(int size, int row, int col, char dir) { //insertShip take
 		}
 	}
 	for (int i = 0; i < size; i++) { //For loop traverses size of current ship looking to be placed.
-			if (placeGrid[y][x]>= '1' && placeGrid[y][x] >= '5') { //If within the placeGrid board an [i][j] location already contains an ship
+			if (placeGrid[y][x]>= '1' && placeGrid[y][x] <= '5') { //If within the placeGrid board an [i][j] location already contains an ship
 			return false; //Return false, because a ship is already present and anothre cannot be placed.
 		} else {
 		
