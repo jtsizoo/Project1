@@ -1,5 +1,6 @@
 #include "placeships.h"
 #include "ui_placeships.h"
+#include "Board.h"
 
 PlaceShips::PlaceShips(QWidget *parent) :
     QWidget(parent),
@@ -220,7 +221,9 @@ void PlaceShips::checkCoordinant(int row, int col, int shipSize, bool isHorizont
 
     // ... code TODO here ...
     // ... tip: change isAvailable to false if the coordinant is invalid
-
+    if (!checkBoard.insertShip(shipSize, row, col, isHorizontal)) {
+        isAvailable = false;
+    }
     ui->place_pushButton->setEnabled(isAvailable);
 }
 
@@ -245,26 +248,37 @@ bool PlaceShips::getDirection()
 
 void PlaceShips::on_ship1_radioButton_clicked()
 {
-    checkCoordinant(getRowCoordinant(), getColCoordinant(), 1, getDirection());
+    currentShip = 1;
+    checkCoordinant(getRowCoordinant(), getColCoordinant(), currentShip, getDirection());
 }
 
 void PlaceShips::on_ship2_radioButton_clicked()
 {
-    checkCoordinant(getRowCoordinant(), getColCoordinant(), 2, getDirection());
+    currentShip = 2;
+    checkCoordinant(getRowCoordinant(), getColCoordinant(), currentShip, getDirection());
 }
 
 void PlaceShips::on_ship3_radioButton_clicked()
 {
-    checkCoordinant(getRowCoordinant(), getColCoordinant(), 3, getDirection());
+    checkCoordinant(getRowCoordinant(), getColCoordinant(), currentShip, getDirection());
 }
 
 void PlaceShips::on_ship4_radioButton_clicked()
 {
-    checkCoordinant(getRowCoordinant(), getColCoordinant(), 4, getDirection());
+    checkCoordinant(getRowCoordinant(), getColCoordinant(), currentShip, getDirection());
 }
 
 void PlaceShips::on_ship5_radioButton_clicked()
 {
-    checkCoordinant(getRowCoordinant(), getColCoordinant(), 5, getDirection());
+    checkCoordinant(getRowCoordinant(), getColCoordinant(), currentShip, getDirection());
 }
 
+void PlaceShips::on_col_comboBox_setValue() {
+    checkCoordinant(getRowCoordinant(), getColCoordinant(), currentShip, getDirection());
+}
+void PlaceShips::on_row_comboBox_setValue() {
+    checkCoordinant(getRowCoordinant(), getColCoordinant(), currentShip, getDirection());
+}
+void PlaceShips::on_dir_comboBox_setValue() {
+    checkCoordinant(getRowCoordinant(), getColCoordinant(), currentShip, getDirection());
+}

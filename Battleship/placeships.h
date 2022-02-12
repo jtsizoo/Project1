@@ -2,6 +2,7 @@
 #define PLACESHIPS_H
 
 #include <QWidget>
+#include "Board.h"
 
 namespace Ui {
 class PlaceShips;
@@ -27,10 +28,16 @@ private slots:
     void on_ship4_radioButton_clicked();    // check for valid coordinant
     void on_ship5_radioButton_clicked();    // check for valid coordinant
 
+    void on_col_comboBox_setValue();
+    void on_row_comboBox_setValue();
+    void on_dir_comboBox_setValue();
+
 private:
     Ui::PlaceShips *ui;
 
+    Board checkBoard;
     int shipNumber; // number of ships per player
+    int currentShip;
 
     bool ship1;     // true when ship has been placed, false otherwise
     bool ship2;     // true when ship has been placed, false otherwise
