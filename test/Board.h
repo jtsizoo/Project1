@@ -18,9 +18,9 @@ class Board {
 	char** initialGrid; //2D array of characters, representing initialGrid (the resulting grid after player places their own battleships)
 	char** placeGrid; //2D array of characters, representing placeGrid (where a player places their own battleships)
 	char** shotGrid; //2D array of characters, representing shotGrid (where a player tries to hit opponent's battleships and records results)
-	int printCol[10] = {1,2,3,4,5,6,7,8,9,10}; //Array of integers, of size 10, filled w/ headers for column positions. 
+	int printCol[10] = {1,2,3,4,5,6,7,8,9,10}; //Array of integers, of size 10, filled w/ headers for column positions.
 	char printRow[10] = {'A','B','C','D','E','F','G','H','I','J'}; //Array of characters, of size 10, filled w/ headers for row positions.
-	
+
 	public:
 	/*----------
      	* @pre int size must be 10x10, playerNum must be a string (will just be Player 1 or Player 2)
@@ -85,6 +85,8 @@ class Board {
         * @return none - void function
         * -------*/
 	void printBoard(std::string boardType);
+
+	bool validShot(int row, int col, Board* opBoard);
 };
 
 #endif

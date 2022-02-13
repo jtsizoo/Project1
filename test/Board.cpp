@@ -11,20 +11,21 @@
 Board::Board(int size, std::string playerNum) { //Constructor for Board class, passes in parameters: size of board (always 10x10) and string representing player name/#.
 	player = playerNum; //Sets member variable player = to playerNum argument (so either Player 1 or Player 2).
 	m_size = size; //Sets member variable m_size = to size argument passed in.
-	
-    initialGrid = new char* [m_size]; //Creates array of characters to store the players initial placement of ship
+  initialGrid = new char* [m_size]; //Creates array of characters to store the players initial placement of ship
 	placeGrid = new char*[m_size]; //Creates array of characters to represent player's own ships and how they have decided to place them.
 	shotGrid = new char*[m_size]; //Creates array of characters to represent player's shots at opponent's grid and their locations.
-	for (int i = 0; i < m_size; i++) { //Nested for loop traverses size of battleship board 2D array.
+	for (int i = 0; i < m_size; i++)
+	{ //Nested for loop traverses size of battleship board 2D array.
 		initialGrid[i] = new char[m_size];
 		placeGrid[i] = new char[m_size]; //First pass creates new array for both boards, finishing creation of a 2D array.
 		shotGrid[i] = new char[m_size]; //2D array for both placeGrid and shotGrid.
-        		for (int j = 0; j < m_size; j++) { //For loop traverse both placeGrid and shotGrid arrays and initialized all entries to character '0'.
-					initialGrid[i][j] = '0';
-           			placeGrid[i][j] = '0';
-            		shotGrid[i][j] = '0';
-        		}
-    	}	
+    for (int j = 0; j < m_size; j++)
+		{ //For loop traverse both placeGrid and shotGrid arrays and initialized all entries to character '0'.
+				initialGrid[i][j] = '0';
+        placeGrid[i][j] = '0';
+        shotGrid[i][j] = '0';
+    }
+    }
 }
 
 Board::~Board() { //Destructor for Board class, deletes placeGrid and shotGrid 2D arrays.
@@ -54,11 +55,11 @@ bool Board::insertShip(int size, int row, int col, char dir) { //insertShip take
 			if (placeGrid[y][x]>= '1' && placeGrid[y][x] <= '5') { //If within the placeGrid board an [i][j] location already contains an ship
 			return false; //Return false, because a ship is already present and anothre cannot be placed.
 		} else {
-		
+
 			char shipNum = '0' + size; //convert the ship number into a char, '0' + number
 			placeGrid[y][x] = shipNum; //Else, store the ship location with the ship number.
 			initialGrid[y][x] = shipNum; //also update the initialGrid with the shipNumber
-			
+
 			if (dir == 'h') { //If desired horizontal orientation, then increase x by 1.
 				x += 1;
 			} else { //Else if desired vertical orientation, then increase y by 1.
@@ -67,6 +68,11 @@ bool Board::insertShip(int size, int row, int col, char dir) { //insertShip take
 		}
 	}
 	return true; //Return true here because the ship was successfully inserted at the desired location.
+}
+
+bool Board::validShot(int row, int col, Board* opBoard) { //validShot takes in row/col/pointer to oppenent's board, returns boolean indicating if this area has already been shot at
+	if(shotGrid[row][col] != '0') return 0;
+	else return 1;
 }
 
 bool Board::shootShot(int row, int col, Board* opBoard) { //shootShot takes in row/col/pointer to opponent's board, returns boolean indicating hit or miss.

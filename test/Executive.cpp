@@ -49,6 +49,20 @@ void Executive::run() { //Void run function enables all gameplay functionality.
 					column = tolower(shot[1]);
 					col = charToInt(column);
 		  	}
+				while(!board->validShot(row, col, opBoard))
+				{
+						std::cout << "Error - you have already shot at this location, take your shot again: ";
+						shot = validateLoc(shot);
+						if(shot.length() ==3) { //If function helps to process shot location if in row 10 (legnth is 3 due to char + 10).
+							row = 9; //If we are in row = 10...
+							column = tolower(shot[2]);
+							col = charToInt(column); //Then correctly concert to integer to identify appropriate location.
+				  	} else { //Else if we are in rows 1-9...
+							row = (int)shot[0] - 49; //Convert string to appropriate location identification.
+							column = tolower(shot[1]);
+							col = charToInt(column);
+				  	}
+				}
         if (board->shootShot(row, col, opBoard)) { //Check to see if there was a hit or miss at shot location.
 					if (opBoard->sinkStatus(row, col)) { //See if this shot resulted in the sinking of a ship...
 						std::cout << "SUNK!\n\n"; //If it did, output message indicating sunk status.
