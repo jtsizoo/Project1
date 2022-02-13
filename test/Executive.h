@@ -3,7 +3,7 @@
  * 	Authors: Alice Kuang, Thresa Kelly, Minwoo Lee, Justin Sizoo, Maggie Swartz (Group #14)
  * 	Assignment: EECS_448 Project #1
  * 	Description: This is the header file for the Executive class
- * 	Date Last Modified: 02/06/2022
+ * 	Date Last Modified: 02/12/2022
  *-----------------------------------------------------*/
 
 #ifndef EXECUTIVE_H
@@ -28,7 +28,7 @@ class Executive {
      		* @return no true return, just creates instance of the class
      		* -------*/
     		Executive(int numShips);
-     		
+
 		/*----------
      		* @pre an instance of Executive class must exist to be deleted
      		* @post Executive class instance is deleted
@@ -36,7 +36,7 @@ class Executive {
      		* @return none, just deleted instance of class
      		* -------*/
     		~Executive();
-     		
+
 		/*----------
      		* @pre
      		* @post
@@ -44,7 +44,7 @@ class Executive {
      		* @return none - void function
      		* -------*/
     		void chooseShipLoc(Board* board, int numShips);
-     		
+
 		/*----------
      		* @pre must have instances of Executive class and Board class for gameplay
      		* @post gameplay can commence
@@ -52,7 +52,7 @@ class Executive {
      		* @return none - void function
      		* -------*/
     		void run();
-     		
+
 		/*----------
      		* @pre 
      		* @post switch players
@@ -68,7 +68,7 @@ class Executive {
      		* @return a converted integer
      		* -------*/
     		int charToInt(char c);
-     		
+
 		/*----------
      		* @pre must input an std::string
      		* @post checks to see whether the given location is valid in reference to board size and description
@@ -76,8 +76,20 @@ class Executive {
      		* @return std::string, representation as to whether or not a valid location was chosen
      		* -------*/
     		std::string validateLoc(std::string input);
+<<<<<<< HEAD
 			bool checkInput(std::string input);
      		
+=======
+
+		/*----------
+	  		* @pre must input an std::string
+     		* @post checks to see if a given string input is valid
+		   	* @param std::string input, the string to check validity
+		    * @return bool, to determine if the string is valid or not
+		* -------*/
+				bool inputChecks(std::string input);
+
+>>>>>>> 6b96088016192ed8336d1115544be89059712770
 		/*----------
      		* @pre char input must be V (for vertical) or H (for horizontal) for meaningful orientation
      		* @post orients ship on board in accordance with selection, can be horizontal or vertical
