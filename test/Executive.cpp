@@ -31,41 +31,41 @@ void Executive::run() { //Void run function enables all gameplay functionality.
 	Board* board = p1Board; //Creates a pointer to Board instance p1Board (Player 1).
 	Board* opBoard = p2Board; //Creates a pointer to Board instance opBoard (Player 2).
 	while (true) { //While loop to enable continuous gameplay until there is a winner.
-			char confirm;
-        	std::string shot = ""; //Initializes string shot to an empty string.
-        	int row = 0; //Initializes row location integer to 0.
-        	int col = 0; //Initializes column location integer to 0.
-        	char column; //Creates char variable representing the column ID.
-			board->printBoard("Shot"); //Print the updated shotGrid.
-        	std::cout << "Player " << PTurn+1 << ", take your shot: "; //Message indicating Player 1 goes first, but alternates to next player in future by + on PTurn.
-        	shot = validateLoc(shot); //Validate shot location.
-			if(shot.length() ==3) { //If function helps to process shot location if in row 10 (legnth is 3 due to char + 10).
-				row = 9; //If we are in row = 10...
-				column = tolower(shot[2]);
-				col = charToInt(column); //Then correctly concert to integer to identify appropriate location.
+				char confirm;
+        std::string shot = ""; //Initializes string shot to an empty string.
+        int row = 0; //Initializes row location integer to 0.
+        int col = 0; //Initializes column location integer to 0.
+        char column; //Creates char variable representing the column ID.
+				board->printBoard("Shot"); //Print the updated shotGrid.
+        std::cout << "Player " << PTurn+1 << ", take your shot: "; //Message indicating Player 1 goes first, but alternates to next player in future by + on PTurn.
+        shot = validateLoc(shot); //Validate shot location.
+				if(shot.length() ==3) { //If function helps to process shot location if in row 10 (legnth is 3 due to char + 10).
+					row = 9; //If we are in row = 10...
+					column = tolower(shot[2]);
+					col = charToInt(column); //Then correctly concert to integer to identify appropriate location.
 		  	} else { //Else if we are in rows 1-9...
-				row = (int)shot[0] - 49; //Convert string to appropriate location identification.
-				column = tolower(shot[1]);
-				col = charToInt(column);
+					row = (int)shot[0] - 49; //Convert string to appropriate location identification.
+					column = tolower(shot[1]);
+					col = charToInt(column);
 		  	}
-        	if (board->shootShot(row, col, opBoard)) { //Check to see if there was a hit or miss at shot location.
-			if (opBoard->sinkStatus(row, col)) { //See if this shot resulted in the sinking of a ship...
-				std::cout << "SUNK!\n\n"; //If it did, output message indicating sunk status.
-			}
-			else std::cout << "HIT!\n\n"; //If not sunk, but a hit did occur, then issue message indicating hit status.
+        if (board->shootShot(row, col, opBoard)) { //Check to see if there was a hit or miss at shot location.
+					if (opBoard->sinkStatus(row, col)) { //See if this shot resulted in the sinking of a ship...
+						std::cout << "SUNK!\n\n"; //If it did, output message indicating sunk status.
+					}
+				else std::cout << "HIT!\n\n"; //If not sunk, but a hit did occur, then issue message indicating hit status.
 
 			board->printBoard("Shot"); //Print the updated shotGrid.
 
 			if (opBoard->checkWin()) { //Check to see if this round of gameplay resulted in a winner.
                 	break;
             		}
-        	} else { //Else, a hit did not occur in this round of gameplay.
+      } else { //Else, a hit did not occur in this round of gameplay.
             		std::cout << "MISS!\n\n"; //Output message indicating a miss occured.
 			board->printBoard("Shot"); //Print shot board.
-            		Board* temp = board; //Create temp board.
-            		board = opBoard; //Set equal to opponent's board.
-            		opBoard = temp; //Set opponent's board equal to temp.
         	}
+			Board* temp = board; //Create temp board.
+			board = opBoard; //Set equal to opponent's board.
+			opBoard = temp; //Set opponent's board equal to temp.
 			std::cout << "Press the Y key to confirm player switch: ";
 			std::cin >> confirm;
 			while (std::cin.fail() || (confirm != 'Y' && confirm != 'y')) { //While innapropriate input occurs...
