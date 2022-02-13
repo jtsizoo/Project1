@@ -11,7 +11,7 @@
 Board::Board(int size, std::string playerNum) { //Constructor for Board class, passes in parameters: size of board (always 10x10) and string representing player name/#.
 	player = playerNum; //Sets member variable player = to playerNum argument (so either Player 1 or Player 2).
 	m_size = size; //Sets member variable m_size = to size argument passed in.
-  initialGrid = new char* [m_size]; //Creates array of characters to store the players initial placement of ship
+  	initialGrid = new char*[m_size]; //Creates array of characters to store the players initial placement of ship
 	placeGrid = new char*[m_size]; //Creates array of characters to represent player's own ships and how they have decided to place them.
 	shotGrid = new char*[m_size]; //Creates array of characters to represent player's shots at opponent's grid and their locations.
 	for (int i = 0; i < m_size; i++)
@@ -20,8 +20,8 @@ Board::Board(int size, std::string playerNum) { //Constructor for Board class, p
 		placeGrid[i] = new char[m_size]; //First pass creates new array for both boards, finishing creation of a 2D array.
 		shotGrid[i] = new char[m_size]; //2D array for both placeGrid and shotGrid.
     for (int j = 0; j < m_size; j++)
-		{ //For loop traverse both placeGrid and shotGrid arrays and initialized all entries to character '0'.
-				initialGrid[i][j] = '0';
+	{ //For loop traverse both placeGrid and shotGrid arrays and initialized all entries to character '0'.
+		initialGrid[i][j] = '0';
         placeGrid[i][j] = '0';
         shotGrid[i][j] = '0';
     }
@@ -70,7 +70,7 @@ bool Board::insertShip(int size, int row, int col, char dir) { //insertShip take
 	return true; //Return true here because the ship was successfully inserted at the desired location.
 }
 
-bool Board::validShot(int row, int col, Board* opBoard) { //validShot takes in row/col/pointer to oppenent's board, returns boolean indicating if this area has already been shot at
+bool Board::validShot(int row, int col) { //validShot takes in row/col/pointer to oppenent's board, returns boolean indicating if this area has already been shot at
 	if(shotGrid[row][col] != '0') return 0;
 	else return 1;
 }

@@ -54,6 +54,14 @@ class Executive {
     		void run();
      		
 		/*----------
+     		* @pre 
+     		* @post switch players
+     		* @param none - no arguments passed in
+     		* @return none - void function
+     		* -------*/
+			void playerSwitch();
+			
+		/*----------
      		* @pre must pass in a character c for correct conversion
      		* @post converts character to integer
      		* @param char c, a character desired to be converted to an integer
@@ -68,7 +76,7 @@ class Executive {
      		* @return std::string, representation as to whether or not a valid location was chosen
      		* -------*/
     		std::string validateLoc(std::string input);
-			bool inputChecks(std::string input);
+			bool checkInput(std::string input);
      		
 		/*----------
      		* @pre char input must be V (for vertical) or H (for horizontal) for meaningful orientation

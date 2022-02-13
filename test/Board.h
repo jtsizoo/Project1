@@ -86,7 +86,7 @@ class Board {
         * -------*/
 	void printBoard(std::string boardType);
 
-	bool validShot(int row, int col, Board* opBoard);
+	bool validShot(int row, int col);
 };
 
 #endif
