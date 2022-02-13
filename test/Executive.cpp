@@ -3,7 +3,7 @@
  *      Authors: Alice Kuang, Thresa Kelly, Minwoo Lee, Justin Sizoo, Maggie Swartz (Group #14)
  *      Assignment: EECS_448 Project #1
  *      Description: This is the executable file for the Executive class
- *      Date Last Modified: 02/06/2022
+ *      Date Last Modified: 02/12/2022
  *-----------------------------------------------------*/
 
 #include "Executive.h"
@@ -18,7 +18,7 @@ Executive::Executive(int numShips) { //Constructor for Executive class, takes in
 	p2Board = new Board(m_size, "Player 2"); //Creates instance of Board class for Player 2, take in m_size and name "Player 2" as parameters.
 	p1Board->printBoard("Initial"); //Prints out initial board prior to ship location selection.
 	chooseShipLoc(p1Board, numShips); //Player 1 places their ships on their board w/ selected number of ships.
-	p2Board->printBoard("Initial");
+	p2Board->printBoard("Initial"); //Prints out initial board prior to ship location sleection.
 	chooseShipLoc(p2Board, numShips); //Player 2 places their ships on their board w/ selected number of ships.
 }
 
@@ -49,10 +49,11 @@ void Executive::run() { //Void run function enables all gameplay functionality.
 					column = tolower(shot[1]);
 					col = charToInt(column);
 		  	}
-				while(!board->validShot(row, col, opBoard))
+				while(!board->validShot(row, col, opBoard)) //Check if the shot location has already been shot at
 				{
-						std::cout << "Error - you have already shot at this location, take your shot again: ";
-						shot = validateLoc(shot);
+						std::cout << "Error - you have already shot at this location, take your shot again: "; //Error message if this is the case
+						shot = validateLoc(shot); //Obtain another valid shot location
+						//Repeated code to split the string into rows and columns again
 						if(shot.length() ==3) { //If function helps to process shot location if in row 10 (legnth is 3 due to char + 10).
 							row = 9; //If we are in row = 10...
 							column = tolower(shot[2]);
@@ -81,18 +82,18 @@ void Executive::run() { //Void run function enables all gameplay functionality.
 			Board* temp = board; //Create temp board.
 			board = opBoard; //Set equal to opponent's board.
 			opBoard = temp; //Set opponent's board equal to temp.
-			std::cout << "Press the Y key to confirm player switch: ";
-			std::cin >> confirm;
+			std::cout << "Press the Y key to confirm player switch: "; //Output message to confirm before switching to the next player
+			std::cin >> confirm; //Obtain input, must be 'Y' or 'y'
 			while (std::cin.fail() || (confirm != 'Y' && confirm != 'y')) { //While innapropriate input occurs...
 				std::cin.clear();
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //Utilize cin.fail and output error message, need correct input to continue.
-				std::cout << "Invalid Input - Press the Y key to confirm player switch: ";
-				std::cin >> confirm;
+				std::cout << "Invalid Input - Press the Y key to confirm player switch: "; //Error message.
+				std::cin >> confirm; //Retry for valid input
 			}
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			PTurn = !PTurn; //Update PTurn to move onto the next player and allow them to place their ships or start gameplay.
 			std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-			std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+			std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"; //Whitespace to allow for player privacy.
     	}
     	std::cout << "\nGame end: Player " << PTurn+1 << " wins.\n"; //If we exited the while loop, one of the players won, output message indicating win.
 }
@@ -133,17 +134,17 @@ void Executive::chooseShipLoc(Board* board, int numShips) {//chooseShipLoc funct
         	} //Closes out while loop.
         inserted = false;
 	} //Closes out for loop.
-	std::cout << "Press the Y key to confirm player switch: ";
+	std::cout << "Press the Y key to confirm player switch: "; //Output message to confirm before switching players
 	std::cin >> confirm;
 	while (std::cin.fail() || (confirm != 'Y' && confirm != 'y')) { //While innapropriate input occurs...
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //Utilize cin.fail and output error message, need correct input to continue.
 		std::cout << "Invalid Input - Press the Y key to confirm player switch: ";
-		std::cin >> confirm;
+		std::cin >> confirm; //Retry to get valid input.
 	}
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	PTurn = !PTurn; //Update PTurn to move onto the next player and allow them to place their ships or start gameplay.
-	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"; //Whitespace to allow for player privacy.
 }
 
 int Executive::charToInt(char c) { //charToInt takes in a character and converts that to the ASCII correlated integer value.

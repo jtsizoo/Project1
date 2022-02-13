@@ -3,7 +3,7 @@
  *      Authors: Alice Kuang, Thresa Kelly, Minwoo Lee, Justin Sizoo, Maggie Swartz (Group #14)
  *      Assignment: EECS_448 Project #1
  *      Description: This is the main.cpp file that triggers all program functionality/begins battleship
- *      Date Last Modified: 02/06/2022
+ *      Date Last Modified: 02/12/2022
  *-----------------------------------------------------*/
 
 #include "Executive.h"
