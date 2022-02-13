@@ -86,17 +86,13 @@ class Board {
         * -------*/
 	void printBoard(std::string boardType);
 
-<<<<<<< HEAD
+	/*----------
+        * @pre gameplay must have already begun
+        * @post returns T/F if shot loc invalid
+        * @param row and col
+        * @return boolean value T or F
+        * -------*/
 	bool validShot(int row, int col);
-=======
-		/*----------
-				* @pre gameplay must have already begun
-				* @post determines if a shot location has already been shot at
-				* @param row, col of the location to check, Board to check
-				* @return bool indicating if the shot is valid or not
-		* -------*/
-	bool validShot(int row, int col, Board* opBoard);
->>>>>>> 6b96088016192ed8336d1115544be89059712770
 };
 
 #endif
