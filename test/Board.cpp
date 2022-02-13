@@ -70,13 +70,8 @@ bool Board::insertShip(int size, int row, int col, char dir) { //insertShip take
 	return true; //Return true here because the ship was successfully inserted at the desired location.
 }
 
-<<<<<<< HEAD
 bool Board::validShot(int row, int col) { //validShot takes in row/col/pointer to oppenent's board, returns boolean indicating if this area has already been shot at
 	if(shotGrid[row][col] != '0') return 0;
-=======
-bool Board::validShot(int row, int col, Board* opBoard) { //validShot takes in row/col/pointer to oppenent's board, returns boolean indicating if this area has already been shot at
-	if(shotGrid[row][col] != '0') return 0; //If the location is not a 0, it has already been shot at and shouldn't be able to be shot again.
->>>>>>> 6b96088016192ed8336d1115544be89059712770
 	else return 1;
 }
 
