@@ -76,20 +76,15 @@ class Executive {
      		* @return std::string, representation as to whether or not a valid location was chosen
      		* -------*/
     		std::string validateLoc(std::string input);
-<<<<<<< HEAD
-			bool checkInput(std::string input);
-     		
-=======
 
 		/*----------
 	  		* @pre must input an std::string
      		* @post checks to see if a given string input is valid
 		   	* @param std::string input, the string to check validity
 		    * @return bool, to determine if the string is valid or not
-		* -------*/
-				bool inputChecks(std::string input);
-
->>>>>>> 6b96088016192ed8336d1115544be89059712770
+			* -------*/
+			bool checkInput(std::string input);
+     		
 		/*----------
      		* @pre char input must be V (for vertical) or H (for horizontal) for meaningful orientation
      		* @post orients ship on board in accordance with selection, can be horizontal or vertical
