@@ -10,12 +10,11 @@
 //void welcomeMsg() {
 //    std::cout << "\n\nWelcome to Battleship!\n\n";
 //    std::cout << "Select your ships and take turns guessing your opponents' ship locations.\n";
-//    std::cout << "If you hit one of your opponent's ships, you will be rewarded with another turn.\n";
 //    std::cout << "First player to sink all their opponent's ships wins.\n\n";
 //}
 
 int main(int argc, char* argv[]) { //To run the program, user must enter ./test and the number of ships they'd like to play with.
-	//welcomeMsg();	
+	//welcomeMsg();
 	if (argc != 2) { //If the user does not enter 2 arguments into the command line, the below error message will display.
 		std::cout << "Invalid number of parameters! To run the program, enter ./test followed by the number of desired ships (1, 2, 3, 4, or 5).\n";
 	} else { //When the user has etered ./test and a second argument into the command line, they enter the below if/else loop.

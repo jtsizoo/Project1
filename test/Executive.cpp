@@ -36,6 +36,7 @@ void Executive::run() { //Void run function enables all gameplay functionality.
         int row = 0; //Initializes row location integer to 0.
         int col = 0; //Initializes column location integer to 0.
         char column; //Creates char variable representing the column ID.
+				board->printBoard("Place");
 				board->printBoard("Shot"); //Print the updated shotGrid.
         std::cout << "Player " << PTurn+1 << ", take your shot: "; //Message indicating Player 1 goes first, but alternates to next player in future by + on PTurn.
         shot = validateLoc(shot); //Validate shot location.
@@ -186,6 +187,7 @@ char Executive::validateDirection(char input) { //validateDirection function int
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "Sorry, your input was invalid. Try again: "; //Display error message and give user opportunity to input until acceptable input.
 		std::cin >> input;
+		input = tolower(input);
 	}
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	return input; //Return input value as 'v' or 'h' to reprsent desired orientation.
