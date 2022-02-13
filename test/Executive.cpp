@@ -38,7 +38,6 @@ void Executive::run() { //Void run function enables all gameplay functionality.
 		board->printBoard("Place");
 		board->printBoard("Shot"); //Print the updated shotGrid.
         std::cout << "Player " << PTurn+1 << ", take your shot: "; //Message indicating Player 1 goes first, but alternates to next player in future by + on PTurn.
-<<<<<<< HEAD
 		shot = validateLoc(shot); //Validate shot location.
 		
 		if (shot.length() == 3) { //If function helps to process shot location if in row 10 (legnth is 3 due to char + 10).
@@ -63,38 +62,6 @@ void Executive::run() { //Void run function enables all gameplay functionality.
 				col = charToInt(tmp);
 			}
 		}
-=======
-        shot = validateLoc(shot); //Validate shot location.
-				if(shot.length() ==3) { //If function helps to process shot location if in row 10 (legnth is 3 due to char + 10).
-					row = 9; //If we are in row = 10...
-					column = tolower(shot[2]);
-					col = charToInt(column); //Then correctly concert to integer to identify appropriate location.
-		  	} else { //Else if we are in rows 1-9...
-					row = (int)shot[0] - 49; //Convert string to appropriate location identification.
-					column = tolower(shot[1]);
-					col = charToInt(column);
-		  	}
-				while(!board->validShot(row, col, opBoard)) //Check if the shot location has already been shot at
-				{
-						std::cout << "Error - you have already shot at this location, take your shot again: "; //Error message if this is the case
-						shot = validateLoc(shot); //Obtain another valid shot location
-						//Repeated code to split the string into rows and columns again
-						if(shot.length() ==3) { //If function helps to process shot location if in row 10 (legnth is 3 due to char + 10).
-							row = 9; //If we are in row = 10...
-							column = tolower(shot[2]);
-							col = charToInt(column); //Then correctly concert to integer to identify appropriate location.
-				  	} else { //Else if we are in rows 1-9...
-							row = (int)shot[0] - 49; //Convert string to appropriate location identification.
-							column = tolower(shot[1]);
-							col = charToInt(column);
-				  	}
-				}
-        if (board->shootShot(row, col, opBoard)) { //Check to see if there was a hit or miss at shot location.
-					if (opBoard->sinkStatus(row, col)) { //See if this shot resulted in the sinking of a ship...
-						std::cout << "SUNK!\n\n"; //If it did, output message indicating sunk status.
-					}
-				else std::cout << "HIT!\n\n"; //If not sunk, but a hit did occur, then issue message indicating hit status.
->>>>>>> 6b96088016192ed8336d1115544be89059712770
 
         if (board->shootShot(row, col, opBoard)) { //Check to see if there was a hit or miss at shot location.
 			if (opBoard->sinkStatus(row, col)) { //See if this shot resulted in the sinking of a ship...
@@ -111,22 +78,7 @@ void Executive::run() { //Void run function enables all gameplay functionality.
 			Board* temp = board; //Create temp board.
 			board = opBoard; //Set equal to opponent's board.
 			opBoard = temp; //Set opponent's board equal to temp.
-<<<<<<< HEAD
 			playerSwitch();
-=======
-			std::cout << "Press the Y key to confirm player switch: "; //Output message to confirm before switching to the next player
-			std::cin >> confirm; //Obtain input, must be 'Y' or 'y'
-			while (std::cin.fail() || (confirm != 'Y' && confirm != 'y')) { //While innapropriate input occurs...
-				std::cin.clear();
-				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //Utilize cin.fail and output error message, need correct input to continue.
-				std::cout << "Invalid Input - Press the Y key to confirm player switch: "; //Error message.
-				std::cin >> confirm; //Retry for valid input
-			}
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			PTurn = !PTurn; //Update PTurn to move onto the next player and allow them to place their ships or start gameplay.
-			std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-			std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"; //Whitespace to allow for player privacy.
->>>>>>> 6b96088016192ed8336d1115544be89059712770
     	}
 	}
     std::cout << "\nGame end: Player " << PTurn+1 << " wins.\n"; //If we exited the while loop, one of the players won, output message indicating win.
@@ -134,45 +86,7 @@ void Executive::run() { //Void run function enables all gameplay functionality.
 
 void Executive::playerSwitch() {
 	char confirm;
-<<<<<<< HEAD
 	std::cout << "Press the Y key to confirm player switch: ";
-=======
-	std::string shipLoc = ""; //Initializes shipLoc to empty string.
-	int row = 0; //Initializes row integer to 0.
-	int col = 0; //Initializes column integer to 0.
-	char column; //Char variable representing column.
-	char direction; //Char variable representing ship direction (orientation).
-	bool inserted = false; //Boolean variable keeps track of whether the ship was inserted, initialized to false.
-	for (int i = 0; i < numShips; i++) { //For loop traverses desired number of ships.
-        	while (!inserted) { //While loop continues while the ship has not been inserted successfully.
-          		std::cout << "Player " << PTurn+1 << ", Input a location for ship " << i+1 << ": "; //Message directs current player to insert their ship.
-          		shipLoc = validateLoc(shipLoc); //Validate ship location.
-		  		if(shipLoc.length() ==3) { //This code is necessary to validate if player wants to insert in row 10.
-			  		row = 9;
-			  		column = tolower(shipLoc[2]);
-			  		col = charToInt(column);
-		  		} else { //Valdiating ship location if in rows 1 to 9.
-			  		row = (int)shipLoc[0] - 49;
-			  		column = tolower(shipLoc[1]);
-			  		col = charToInt(column);
-		  		}
-		  		if (i == 0) {
-					direction = 'H'; //If i=0, the first ship is being entered and a direction is not necessary.
-				} else { //Else have user input if they want the ship oriented horizontally or vertically.
-			  		std::cout << "Input a direction ('H' for horizontal or 'V' for vertical): ";
-			  		direction = validateDirection(direction); //Make sure ship location is still valid with desired orientation.
-		  		}
-          			if (!board->insertShip(i+1, row, col, direction)) { //If you cannot insert at desired location/orientation, user has to try again.
-            				std::cout << "Error - Invalid Location : Ship already exists here or extends outside board. Try again\n"; //Error message.
-          			} else {
-           				inserted = true; //Else, ship was inserted at desired location/orientation successfully!
-					board->printBoard("Place"); //Mark the change on the place board.
-          			}
-        	} //Closes out while loop.
-        inserted = false;
-	} //Closes out for loop.
-	std::cout << "Press the Y key to confirm player switch: "; //Output message to confirm before switching players
->>>>>>> 6b96088016192ed8336d1115544be89059712770
 	std::cin >> confirm;
 	while (std::cin.fail() || (confirm != 'Y' && confirm != 'y')) { //While innapropriate input occurs...
 		std::cin.clear();
@@ -182,7 +96,6 @@ void Executive::playerSwitch() {
 	}
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	PTurn = !PTurn; //Update PTurn to move onto the next player and allow them to place their ships or start gameplay.
-<<<<<<< HEAD
 	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 }
@@ -224,9 +137,6 @@ void Executive::chooseShipLoc(Board* board, int numShips) {//chooseShipLoc funct
         inserted = false;
 	} //Closes out for loop.
 	playerSwitch(); // switch player
-=======
-	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"; //Whitespace to allow for player privacy.
->>>>>>> 6b96088016192ed8336d1115544be89059712770
 }
 
 int Executive::charToInt(char c) { //charToInt takes in a character and converts that to the ASCII correlated integer value.
