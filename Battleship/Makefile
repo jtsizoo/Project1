@@ -1,5 +1,5 @@
-test: main.o Executive.o Board.o
-	g++ -std=c++11 -g -Wall main.o Executive.o Board.o -o test
+Battleship: main.o Executive.o Board.o
+	g++ -std=c++11 -g -Wall main.o Executive.o Board.o -o Battleship
 
 main.o: main.cpp Executive.h
 	g++ -std=c++11 -g -Wall -c main.cpp
@@ -11,4 +11,4 @@ Board.o: Board.cpp Board.h
 	g++ -std=c++11 -g -Wall -c Board.cpp
 
 clean:
-	rm *.o test
+	rm *.o Battleship
