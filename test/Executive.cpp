@@ -158,20 +158,20 @@ bool Executive::checkInput(std::string input)
 	if(input.length() == 2) //i.e. 1 digit followed by 1 letter.
 	{
 		if (isdigit(input[1])) invalidChar = true;
-		int first = charToInt(input[0]); // convert row to int
+		int row = charToInt(input[0]); // convert row to int
 		char temp = tolower(input[1]);
-		int second = charToInt(temp); //convert col to int
-		if(first < 0 || first >= 10 || second < 0 || second >= 10) invalidChar = true; //Validate lowercase char case.
+		int col = charToInt(temp); //convert col to int
+		if(row < 0 || row >= 10 || col < 0 || col >= 10) invalidChar = true; //Validate lowercase char case.
 	}
 	else if(input.length() == 3) //i.e. 2 digit followed by 1 letter.
 	{
 		if (isdigit(input[2])) invalidChar = true;
-		int first1 = charToInt(input[0]); //Index 0 is tens place of row
-		int first2 = charToInt(input[1]); //Index 1 is ones place of row
+		int row1 = charToInt(input[0]); //Index 0 is tens place of row
+		int row2 = charToInt(input[1]); //Index 1 is ones place of row
 		char temp = tolower(input[2]);
-		int second = charToInt(temp); //convert col to int
-		if (first1 != 0 || first2 != -1) invalidChar = true; //Row != 10
-		if(second < 0 || second >= 10) invalidChar = true; //Validate lowercase char case.
+		int col = charToInt(temp); //convert col to int
+		if (row1 != 0 || row2 != -1) invalidChar = true; //Row != 10
+		if(col < 0 || col >= 10) invalidChar = true; //Validate lowercase char case.
 	}
 	if (invalidLength || invalidChar) return true;
 	else return false;
